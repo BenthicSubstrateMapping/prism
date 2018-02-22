@@ -5,10 +5,5 @@ A Python framework for Probabilistic Acoustic Sediment Mapping. See project webs
 
 
 ### Contributing & Credits
-
- Primary Developer |    Daniel Buscombe 
- ------ | ---------------
-        |  Northern Arizona University
-        | Flagstaff, AZ 86011
-        | daniel.buscombe@nau.edu
+Primary Developer:    Daniel Buscombe, Northern Arizona University, Flagstaff, AZ 86011, daniel.buscombe@nau.edu
 
