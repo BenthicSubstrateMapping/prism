@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+include data/newbex/bs/*.tiff
+include data/newbex/ref/*.*
+include prism/*.png

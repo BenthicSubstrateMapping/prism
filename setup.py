@@ -24,11 +24,11 @@ exec(line, globals())
 
 
 install_requires = [
-    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'pydensecrf', 'basemap', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely', 'osgeo'
+    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'pydensecrf', 'basemap', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely', 'GDAL'
 ]
 
 def setupPackage():
-   setup(name='PyHum',
+   setup(name='prism_mbes',
          version=__version__,
          description='Buscombe, D., 2017',
          #long_description=long_description,
@@ -48,9 +48,7 @@ def setupPackage():
          install_requires=install_requires,
          license = "GNU GENERAL PUBLIC LICENSE v3",
          packages=['prism'],
-         cmdclass = cmdclass,
-         ext_modules=ext_modules,
-         platforms='OS Independent',
+         platforms='OS Independent'
    )
 
 if __name__ == '__main__':

@@ -25,7 +25,7 @@ import warnings
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore",category=DeprecationWarning)
     from sklearn import cross_validation
-from common_funcs import get_X
+from prism.common_funcs import get_X
 ##-------------------------------------------------------------
 
 ##-------------------------------------------------------------

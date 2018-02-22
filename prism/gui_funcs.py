@@ -49,13 +49,21 @@ from tkcolorpicker import askcolor
 from PIL import Image, ImageTk
 
 # prism functions
-from common_funcs import get_sparse_labels
-from gmm_funcs import fit_GMM, apply_GMM
-from crf_funcs import apply_CRF
-from read_funcs import *
-from plot_funcs import *
-from write_funcs import *
-from eval_funcs import *
+from prism.common_funcs import *
+from prism.crf_funcs import *
+from prism.gmm_funcs import *
+from prism.read_funcs import *
+from prism.write_funcs import *
+from prism.eval_funcs import *
+from prism.plot_funcs import *
+
+#from common_funcs import get_sparse_labels
+#from gmm_funcs import fit_GMM, apply_GMM
+#from crf_funcs import apply_CRF
+#from read_funcs import *
+#from plot_funcs import *
+#from write_funcs import *
+#from eval_funcs import *
 ##-------------------------------------------------------------
 
 ##-------------------------------------------------------------
@@ -137,7 +145,7 @@ def gui():
 	image_panel.configure(background='black')
 	 
 	#show_image = ImageTk.PhotoImage(Image.open(prism.__path__[0]+os.sep+"prism_logo_blk.png"))
-	show_image = ImageTk.PhotoImage(Image.open(".."+os.sep+"prism_logo_blk_sm.png"))
+	show_image = ImageTk.PhotoImage(Image.open("prism_logo_blk_sm.png"))
 	# show the panel
 	image_panel.create_image(0, 0, anchor=Tkinter.NW, image=show_image) 
 		

@@ -26,7 +26,7 @@ import pyproj
 import os
 import numpy as np
 from mpl_toolkits.basemap import Basemap
-from common_funcs import get_X
+from prism.common_funcs import get_X
 ##-------------------------------------------------------------
 
 ##-------------------------------------------------------------
