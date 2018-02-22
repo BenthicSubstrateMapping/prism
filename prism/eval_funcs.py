@@ -69,7 +69,8 @@ def plot_confmatGMM(y_pred, Lc, bed, prefix):
    This function ...
    """
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    y = y_pred.copy()
    del y_pred
@@ -114,7 +115,8 @@ def plot_confmatCRF(y_pred, Lc, bed, prefix):
    This function ...
    """
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    y = y_pred.copy()
    del y_pred

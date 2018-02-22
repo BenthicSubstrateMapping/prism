@@ -29,6 +29,7 @@ np.seterr(invalid='ignore')
 import os
 
 # prism functions
+import prism
 from prism.common_funcs import *
 from prism.crf_funcs import *
 from prism.gmm_funcs import *
@@ -37,9 +38,33 @@ from prism.write_funcs import *
 from prism.eval_funcs import *
 from prism.plot_funcs import *
 
+import os
+import shutil
+import errno
+ 
+def dircopy(src, dest):
+    try:
+        shutil.copytree(src, dest)
+    except OSError as e:
+        # If the error was caused because the source wasn't a directory
+        if e.errno == errno.ENOTDIR:
+            shutil.copy(src, dest)
+        else:
+            print('Directory not copied. Error: %s' % e)
+
+__all__ = [
+    'dotest',
+    ]
+
 ##-------------------------------------------------------------
 
 def dotest():
+
+
+   # copy files over to somewhere read/writeable
+   dircopy(prism.__path__[0], os.path.expanduser("~")+os.sep+'prism_test')
+
+   # general settings   
 
    ##GMM parameters
    covariance = 'full'
@@ -57,10 +82,16 @@ def dotest():
    prob_thres = 0.1
    chambolle = 0.0
    test_size = 0.5
-   bs100 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_100.tiff'
-   bs200 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_200.tiff'
-   bs400 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_400.tiff'
-   refs_file = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'ref'+os.sep+'newbex_bed.shp'
+
+   bs100 = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex_mosaic_100.tiff'))
+   bs200 = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex_mosaic_200.tiff'))
+   bs400 = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex_mosaic_400.tiff'))
+   refs_file = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex_bed.shp'))
+
+   #bs100 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_100.tiff'
+   #bs200 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_200.tiff'
+   #bs400 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_400.tiff'
+   #refs_file = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'ref'+os.sep+'newbex_bed.shp'
    prefix = 'newbex'
 
    input = [bs100, bs200, bs400]

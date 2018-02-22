@@ -32,7 +32,8 @@ def export_bed_data(bed, prefix):
    This function ...
    """
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    rows = zip(bed['Xlon'], bed['Ylat'], bed['Cnames'], bed['Ccodes'])
 
@@ -55,6 +56,14 @@ def export_bed_data(bed, prefix):
                 'geometry': mapping(point)
             })
 
+   # create the .prj file
+   prj = open(base+'bed_observations.prj', "w")
+   # call the function and supply the epsg code
+   epsg = 'GEOGCS["WGS84",DATUM["WGS_1984",SPHEROID["WGS84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]'
+   prj.write(epsg)
+   prj.close()
+
+
 ##-------------------------------------------------------------
 def export_crf_gtiff(mask, y_pred, y_prob, bs, prefix):
    """
@@ -68,7 +77,8 @@ def export_crf_gtiff(mask, y_pred, y_prob, bs, prefix):
    prob[mask==1] = np.nan   
    pred[mask==1] = np.nan
    
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    proj = osr.SpatialReference()
    proj.ImportFromEPSG(4326) 
@@ -137,7 +147,8 @@ def export_gmm_gtiff(mask, y_pred, y_prob, bs, prefix):
    prob[mask==1] = np.nan   
    pred[mask==1] = np.nan
    
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    proj = osr.SpatialReference()
    proj.ImportFromEPSG(4326) 

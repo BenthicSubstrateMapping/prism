@@ -49,6 +49,7 @@ from tkcolorpicker import askcolor
 from PIL import Image, ImageTk
 
 # prism functions
+import prism
 from prism.common_funcs import *
 from prism.crf_funcs import *
 from prism.gmm_funcs import *
@@ -144,8 +145,8 @@ def gui():
 	image_panel.grid(column = 0, row = 2)
 	image_panel.configure(background='black')
 	 
-	#show_image = ImageTk.PhotoImage(Image.open(prism.__path__[0]+os.sep+"prism_logo_blk.png"))
-	show_image = ImageTk.PhotoImage(Image.open("prism_logo_blk_sm.png"))
+	show_image = ImageTk.PhotoImage(Image.open(prism.__path__[0]+os.sep+"prism_logo_blk_sm.png"))
+	#show_image = ImageTk.PhotoImage(Image.open("prism_logo_blk_sm.png"))
 	# show the panel
 	image_panel.create_image(0, 0, anchor=Tkinter.NW, image=show_image) 
 		

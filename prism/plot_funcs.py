@@ -40,7 +40,8 @@ def plot_bs_maps(img, bed, bs, cmap, prefix):
    latmin = bs[0]['latmin']  
    latmax = bs[0]['latmax']
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    cmap = colors.ListedColormap(cmap)
 
@@ -261,7 +262,8 @@ def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
    This function ...
    """
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    cmap = colors.ListedColormap(cmap)
 
@@ -363,7 +365,8 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    latmin = bs[0]['latmin']  
    latmax = bs[0]['latmax']
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    #----------------------------------------------------------------
 
@@ -465,7 +468,8 @@ def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    
    cmap = colors.ListedColormap(cmap)
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    #----------------------------------------------------------------
    X = bed['Xlon']
@@ -584,7 +588,8 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    y_prob[mask==1] = np.nan   
    y_pred[mask==1] = np.nan
    
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    cmap = colors.ListedColormap(cmap)
 
@@ -690,7 +695,8 @@ def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    y_prob[mask==1] = np.nan   
    y_pred[mask==1] = np.nan
    
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    cmap = colors.ListedColormap(cmap)
 
@@ -819,7 +825,8 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    latmin = bs[0]['latmin']  
    latmax = bs[0]['latmax']
 
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    #----------------------------------------------------------------
 
@@ -999,7 +1006,8 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    y_prob_crf[mask==1] = np.nan   
    y_pred_crf[mask==1] = np.nan
    
-   base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
+   base = prefix+'_'
 
    cmap = colors.ListedColormap(cmap)
 
