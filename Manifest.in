@@ -1,0 +1,3 @@
+include README.md
+include LICENSE
+recursive-include prism *.csv *.shx *.cpg *.dbf *.prj *.qpj *.shp *.tiff
