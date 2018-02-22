@@ -1,0 +1,16 @@
+Metadata-Version: 1.0
+Name: prism
+Version: 1.0
+Summary: a description
+Home-page: https://github.com/dbuscombe-usgs/prism
+Author: Daniel Buscombe
+Author-email: daniel.buscombe@nau,edu
+License: GPL
+Description: pyhum
+        
+Keywords: meshing
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering :: Mathematics
