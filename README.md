@@ -13,20 +13,48 @@ Bed observation data from Patricia Bay are digitized from data presented in: B.~
 
 Bed observation data from Portsmouth (NEWBEX) are digitized from data presented in: T.~Weber, L.~and Ward. Observations of backscatter from sand and gravel seafloors between 170 and 250 kHz. Journal of the Acoustical Society of America, vol.~138, no.~4, pp.~2169 - 2180, 2015.
 
-CRF subfunctions using the pydensecrf wrapper (https://github.com/lucasb-eyer/pydensecrf) 
+CRF subfunctions using the [pydensecrf wrapper](https://github.com/lucasb-eyer/pydensecrf) 
 
 ## Setup
 
 ### Installing in a conda virtual env (recommended)
+
+PriSM is designed for use with Python 3
 
 Windows:
 
 ```
 conda create --name prism_test python=3
 activate prism_test
-pip install numpy Cython
+pip install Cython
+conda install gdal rasterio shapely fiona -y
+```
+
+![win1](https://user-images.githubusercontent.com/3596509/36634602-3abda3d4-1964-11e8-9a17-970e296c807f.png)
+
+![win2](https://user-images.githubusercontent.com/3596509/36635357-9c4b57b6-1970-11e8-88bf-272674b43222.png)
+
+```
 pip install git+https://github.com/dbuscombe-usgs/prism.git
 ```
+
+![win3](https://user-images.githubusercontent.com/3596509/36634628-a567d768-1964-11e8-8d19-3e8aba9b6f03.png)
+
+If you get an error that looks like this:
+
+![win4](https://user-images.githubusercontent.com/3596509/36635710-3d589a64-1977-11e8-8981-632dbd40f06a.png)
+
+
+it means you need to install a C++ compiler. Go to this site: http://landinghub.visualstudio.com/visual-cpp-build-tools
+
+and download the Visual C++ Build Tools 2015. Install using the 'default' setting. It takes about 5-10 minutes to install
+
+![win_c++](https://user-images.githubusercontent.com/3596509/36635941-4b1bfd82-197a-11e8-85d4-c85b698886ea.png)
+
+Run the PriSM installation again and it should work:
+
+![win5](https://user-images.githubusercontent.com/3596509/36634775-12aacffe-1967-11e8-98d0-f1b6a7732d37.png)
+
 
 Linux:
 
@@ -49,14 +77,6 @@ Linux:
 source deactivate
 ```
 
-If you get gdal/osgeo/ogr/os errors, install GDAL (Windows only)::
-1. Go to: https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal
-2. Download the appropriate file (for example, python 3.6, 64 bit = GDAL‑2.2.3‑cp36‑cp36m‑win32.whl )
-3. install using pip:
-
-```
-pip install GDAL‑2.2.3‑cp36‑cp36m‑win32.whl
-```
 
 ### Installing as a library accessible outside of virtual env
 
@@ -103,6 +123,10 @@ Then run the test ::
 python -c "import prism; prism.test.dotest()" 
 ```
 
+![win6](https://user-images.githubusercontent.com/3596509/36634778-1683d2ec-1967-11e8-9d9e-13cd52029a99.png)
+
+![win7](https://user-images.githubusercontent.com/3596509/36635231-da48e2c4-196e-11e8-985c-aaa0d62d95c5.png)
+
 ### Using the GUI
 
 run the GUI ::
@@ -110,6 +134,19 @@ run the GUI ::
 ```
 python -c "import prism; prism.gui_funcs.gui()" 
 ```
+
+![win8](https://user-images.githubusercontent.com/3596509/36635719-76f30246-1977-11e8-9cae-d2f9caf8c4fd.png)
+
+
+or alternatively from within the python console like so:
+
+![win9](https://user-images.githubusercontent.com/3596509/36635727-9184bf82-1977-11e8-82fd-ed8b9304aa5f.png)
+
+
+## More info
+
+Download the [user manual](https://daniel-buscombe.squarespace.com/s/prism_manual.pdf) 
+
 
 ## Using prism within python scripts
 

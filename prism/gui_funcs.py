@@ -829,7 +829,6 @@ def gui():
            this function ...
            """
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
-
               in1 = self.y_pred_gmm.copy()
               #in1[self.mask] = np.nan
 
@@ -842,7 +841,11 @@ def gui():
               in4 = self.y_prob_crf.copy()
               #in4[self.mask] = np.nan
 
-              plot_gmm_crf(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
+              if hasattr(self, 'cmap'):
+                 plot_gmm_crf(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
+              else:
+                 self.cmap = _get_cmap(self)
+                 plot_gmm_crf(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
 
               self.plot2a_btn.configure(fg='#d64161', background="white")
 
@@ -872,7 +875,11 @@ def gui():
               in4 = self.y_prob_crf.copy()
               #in4[self.mask] = np.nan
 
-              plot_gmm_crf_images(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
+              if hasattr(self, 'cmap'):
+                 plot_gmm_crf_images(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
+              else:
+                 self.cmap = _get_cmap(self)
+                 plot_gmm_crf_images(self.mask, in1, in2, in3, in4, self.bs, self.bed, self.cmap, self.prefix.get())
 
               self.plot4a_btn.configure(fg='#d64161', background="white")
 
