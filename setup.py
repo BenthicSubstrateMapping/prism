@@ -28,6 +28,7 @@ import inspect
 
 from distutils.core import setup
 from distutils.extension import Extension
+from Cython.Build import cythonize
 
 # Directory of the current file 
 SETUP_DIRECTORY = os.path.dirname(os.path.abspath(inspect.getfile(
