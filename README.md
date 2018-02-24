@@ -25,7 +25,7 @@ Windows:
 conda create --name prism_test python=3
 activate prism_test
 pip install numpy Cython
-pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
+pip install git+https://github.com/dbuscombe-usgs/prism.git
 ```
 
 Linux:
@@ -34,7 +34,7 @@ Linux:
 conda create --name prism_test python=3
 source activate prism_test
 pip install numpy Cython
-pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
+pip install git+https://github.com/dbuscombe-usgs/prism.git
 ```
 
 finally deactivate the venv ::
@@ -61,13 +61,7 @@ pip install GDAL‑2.2.3‑cp36‑cp36m‑win32.whl
 ### Installing as a library accessible outside of virtual env
 
 
-1. From PyPI::
-
-```
-pip install prism_mbes
-```
-
-2. the latest 'bleeding edge' (pre-release) version directly from github::
+1. the latest 'bleeding edge' (pre-release) version directly from github::
 
 ```
 pip install git+https://github.com/dbuscombe-usgs/prism.git
@@ -76,7 +70,7 @@ pip install git+https://github.com/dbuscombe-usgs/prism.git
 (Windows users) install git from here: https://git-scm.com/download/win
 
 
-3. from github repo clone::
+2. from github repo clone::
 
 ```
 git clone git@github.com:dbuscombe-usgs/prism.git
@@ -90,13 +84,13 @@ or a local installation:
 python setup.py install --user
 ```
 
-4. linux users, using a virtual environment:
+3. linux users, using a virtual environment:
 
 ```
 virtualenv venv
 source venv/bin/activate
 pip install numpy Cython
-pip install prism_mbes  #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
+pip install git+https://github.com/dbuscombe-usgs/prism.git
 deactivate ##(or source venv/bin/deactivate)
 ```
 

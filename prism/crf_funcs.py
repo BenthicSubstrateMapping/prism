@@ -21,7 +21,7 @@
 from __future__ import division
 import numpy as np
 import pydensecrf.densecrf as dcrf
-from utils import create_pairwise_gaussian, create_pairwise_bilateral, unary_from_labels
+from prism.utils import create_pairwise_gaussian, create_pairwise_bilateral, unary_from_labels
 from scipy.stats import mode as md
 ##-------------------------------------------------------------
 
