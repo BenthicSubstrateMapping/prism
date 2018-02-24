@@ -47,6 +47,7 @@ else:
 
 from tkcolorpicker import askcolor
 from PIL import Image, ImageTk
+import matplotlib.pyplot as plt
 
 # prism functions
 import prism
@@ -671,6 +672,16 @@ def gui():
            self.update()
 
 	#=======================
+	def _get_cmap(self):
+           cmap = plt.get_cmap('tab20b',len(self.bed['labels'])-1).colors
+
+           cmap1 = []
+           cmap1.append('gray')
+           for k in cmap:
+              cmap1.append(colors.rgb2hex(k))
+           return cmap1
+
+	#=======================
 	def _pick_cmap(self):
            """
            this function ...
@@ -714,7 +725,13 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
+
 
 
 	#=======================
@@ -740,7 +757,13 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
+
 
 
 	#=======================
@@ -766,7 +789,13 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
+
 
 	#=======================
 	def _plot_crf_image(self):
@@ -790,7 +819,13 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
+
 
 	#=======================
 	def _plot_gmm_crf(self):
@@ -865,7 +900,13 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
+
 
 	#=======================
 	def _plot_bs(self):
@@ -880,7 +921,12 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
            else:
-              tkMessageBox.showinfo("Pick colors", "Pick color ramp first!") 
+              self.cmap = _get_cmap(self)
+              plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
+
+              self.plot6_btn.configure(fg='#d64161', background="white")
+              self.update()
+              tkMessageBox.showinfo("Done!", "Plot made") 
 
 	#=======================
 	def _plot_cm_gmm(self):

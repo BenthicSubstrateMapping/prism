@@ -25,9 +25,59 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import pyproj
 import os
 import numpy as np
-from mpl_toolkits.basemap import Basemap
 from prism.common_funcs import get_X
+
+try
+   from mpl_toolkits.basemap import Basemap
+except:
+   pass
+
+import cartopy.feature as cfeature
+import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+import cartopy.io.img_tiles as cimgt
+
+
 ##-------------------------------------------------------------
+
+
+#   extent_lonlat = ( lonmin, lonmax, latmin, latmax )
+#   crs_lonlat = ccrs.PlateCarree()
+
+
+#   #url = 'http://map1c.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi'
+#   #layer = 'BlueMarble_ShadedRelief_Bathymetry'
+#   #ax.add_wmts(url, layer, zorder=0)
+
+#   n = 0.01
+#   request = cimgt.GoogleTiles()
+#   request = cimgt.StamenTerrain()
+
+
+#   if np.ndim(img)>2: #multispectral#
+
+#      fig = plt.figure(frameon=False, dpi=600)
+
+#      tmp = img[:,:,0].astype('float')
+#      tmp[tmp==0] = np.nan
+
+#      ax = fig.add_subplot(111, projection=crs_lonlat)
+#      #subplot_kw = dict(projection=crs_lonlat) #request.crs) #crs_lonlat)
+#      #fig, ax = plt.subplots(figsize=(9, 9), subplot_kw=subplot_kw)
+
+#      ax.add_image(request, 15, zorder=0)
+#      ax.set_extent(( lonmin-n, lonmax+n, latmin-n, latmax+n ), crs=crs_lonlat)
+#      gl = ax.gridlines(crs=crs_lonlat, 
+#                  xlocs=np.arange(lonmin, lonmax, n), 
+#                  ylocs=np.arange(latmin, latmax, n), 
+#                  draw_labels=True)
+#      gl.xlabels_top = None
+#      gl.xformatter = LONGITUDE_FORMATTER
+#      gl.yformatter = LATITUDE_FORMATTER
+#      #ax.set_title('Plate carrée projection', va='bottom');
+#      ax.imshow(tmp, cmap='RdBu', extent=extent_lonlat, origin='upper', zorder=2 ) #ccrs.PlateCarree())transform=request.crs,
+
 
 ##-------------------------------------------------------------
 def plot_bs_maps(img, bed, bs, cmap, prefix):

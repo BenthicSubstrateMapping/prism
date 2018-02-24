@@ -26,7 +26,6 @@ warnings.filterwarnings("ignore")
 import numpy as np
 np.seterr(divide='ignore')
 np.seterr(invalid='ignore')
-import os
 
 # prism functions
 import prism

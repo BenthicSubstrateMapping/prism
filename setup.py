@@ -42,8 +42,8 @@ exec(line, globals())
 
 
 install_requires = [
-    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'pydensecrf', 'basemap', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely', 'GDAL'
-]
+    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely', 'GDAL'
+] #'basemap', 'pydensecrf'
 
 def setupPackage():
    setup(name='prism_mbes',
@@ -67,7 +67,8 @@ def setupPackage():
          license = "GNU GENERAL PUBLIC LICENSE v3",
          packages=['prism'],
          platforms='OS Independent',
-         package_data={'prism': ['*.tiff', '*.shp', '*.shx', '*.dbf', '*.qpj', '*.prj', '*.cpg', '*.png']}
+         ext_modules=cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx']),
+         package_data={'prism': ['*.tiff', '*.shp', '*.shx', '*.dbf', '*.qpj', '*.prj', '*.cpg', '*.png', 'pydensecrf/*.pyx']}
    )
 
 if __name__ == '__main__':
