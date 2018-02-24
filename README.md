@@ -30,20 +30,11 @@ Linux:
 ```
 conda create --name prism_test python=3
 source activate prism_test
+pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 ```
 
-Then run the test ::
-
-```
-python -c "import prism; prism.test.dotest()" 
-```
-
-run the GUI ::
 
 
-```
-python -c "import prism; prism.gui_funcs.gui()" 
-```
 
 finally deactivate the venv ::
 
@@ -96,6 +87,123 @@ or a local installation:
 
 ```
 python setup.py install --user
+```
+
+4. linux users, using a virtual environment:
+
+```
+virtualenv venv
+source venv/bin/activate
+pip install numpy
+pip install Cython
+pip install basemap --allow-external basemap --allow-unverified basemap
+pip install prism_mbes --no-deps
+deactivate ##(or source venv/bin/deactivate)
+```
+
+
+### Running the test
+
+Then run the test ::
+
+```
+python -c "import prism; prism.test.dotest()" 
+```
+
+### Using the GUI
+
+run the GUI ::
+
+```
+python -c "import prism; prism.gui_funcs.gui()" 
+```
+
+## Using prism within python scripts
+
+```
+
+def run_prism():
+
+   #==================================================================================
+   ##GMM parameters
+   covariance = 'full'
+   tol = 1e-2
+
+   ##CRF parameters
+   theta = 300 
+   mu = 100 
+   n_iter = 15
+
+   # general settings
+   gridres = 1  # grid size in m
+   buff = 10 # buffer distance on each bed observation
+   prob_thres = 0.1 #probability threshold
+   chambolle = 0.0  #chambolle filter
+   test_size = 0.5
+
+   bs100 = 'newbex_mosaic_100.tiff'
+   bs200 = 'newbex_mosaic_200.tiff'
+   bs400 = 'newbex_mosaic_400.tiff'
+   refs_file = 'newbex_bed.shp'
+
+   prefix = 'newbex'
+
+
+   #======== READ
+   #==================================================================================
+   input = [bs100, bs200, bs400]
+   img, bs = read_geotiff(input, gridres, chambolle)
+
+   bed = read_shpfile(refs_file, bs)
+   Lc = get_sparse_labels(bs, bed, buff)
+
+   if np.ndim(img)>2:
+      mask = img[:,:,0]==0
+   else:
+      mask = img==0
+
+   #======== GMM
+   #==================================================================================
+   g = fit_GMM(img, Lc, test_size, covariance, tol)
+   y_pred_gmm, y_prob_gmm, y_gmm_prob_per_class = apply_GMM(g, img, prob_thres)
+
+   #======== CRF
+   #==================================================================================
+   y_pred_crf, y_prob_crf, y_crf_prob_per_class = apply_CRF(img, Lc, bed['labels'], n_iter, prob_thres, theta, mu)
+
+   #======== PLOT
+   #==================================================================================
+   cmap = plt.get_cmap('tab20b',len(bed['labels'])-1).colors
+
+   cmap1 = []
+   cmap1.append('gray')
+   for k in cmap:
+      cmap1.append(colors.rgb2hex(k))
+
+   plot_dists_per_sed(Lc, img, bed, cmap1, prefix)
+
+   plot_gmm(mask, y_pred_gmm, y_prob_gmm, bs, bed, cmap, prefix)
+   plot_crf(mask, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix)
+
+   plot_gmm_image(mask, y_pred_gmm, y_prob_gmm, bs, bed, cmap, prefix)
+   plot_crf_image(mask, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix)
+
+   plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix)
+   plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix)
+   plot_bs_maps(img, bed, bs, cmap, prefix)
+
+   plot_confmatCRF(y_pred_crf, Lc, bed, prefix)
+   plot_confmatGMM(y_pred_gmm, Lc, bed, prefix)
+
+   #======== EXPORT
+   #==================================================================================
+   export_bed_data(bed, prefix)
+   export_gmm_gtiff(mask, y_pred_gmm.copy(), y_prob_gmm.copy(), bs, prefix)
+   export_crf_gtiff(mask, y_pred_crf.copy(), y_prob_crf.copy(), bs, prefix)
+
+if __name__ == '__main__':
+   run_prism()
+
 ```
 
 
