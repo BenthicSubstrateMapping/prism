@@ -13,6 +13,8 @@ Bed observation data from Patricia Bay are digitized from data presented in: B.~
 
 Bed observation data from Portsmouth (NEWBEX) are digitized from data presented in: T.~Weber, L.~and Ward. Observations of backscatter from sand and gravel seafloors between 170 and 250 kHz. Journal of the Acoustical Society of America, vol.~138, no.~4, pp.~2169 - 2180, 2015.
 
+CRF subfunctions using the pydensecrf wrapper (https://github.com/lucasb-eyer/pydensecrf) 
+
 ## Setup
 
 ### Installing in a conda virtual env (recommended)
@@ -22,6 +24,7 @@ Windows:
 ```
 conda create --name prism_test python=3
 activate prism_test
+pip install numpy Cython
 pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 ```
 
@@ -30,6 +33,7 @@ Linux:
 ```
 conda create --name prism_test python=3
 source activate prism_test
+pip install numpy Cython
 pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 ```
 
@@ -91,8 +95,7 @@ python setup.py install --user
 ```
 virtualenv venv
 source venv/bin/activate
-pip install numpy
-pip install Cython
+pip install numpy Cython
 pip install prism_mbes  #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 deactivate ##(or source venv/bin/deactivate)
 ```
