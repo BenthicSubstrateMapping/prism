@@ -34,49 +34,6 @@ except:
 
 ##-------------------------------------------------------------
 
-#import cartopy.feature as cfeature
-#import cartopy.crs as ccrs
-#import matplotlib.pyplot as plt
-#from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-#import cartopy.io.img_tiles as cimgt
-
-#   extent_lonlat = ( lonmin, lonmax, latmin, latmax )
-#   crs_lonlat = ccrs.PlateCarree()
-
-
-#   #url = 'http://map1c.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi'
-#   #layer = 'BlueMarble_ShadedRelief_Bathymetry'
-#   #ax.add_wmts(url, layer, zorder=0)
-
-#   n = 0.01
-#   request = cimgt.GoogleTiles()
-#   request = cimgt.StamenTerrain()
-
-
-#   if np.ndim(img)>2: #multispectral#
-
-#      fig = plt.figure(frameon=False, dpi=600)
-
-#      tmp = img[:,:,0].astype('float')
-#      tmp[tmp==0] = np.nan
-
-#      ax = fig.add_subplot(111, projection=crs_lonlat)
-#      #subplot_kw = dict(projection=crs_lonlat) #request.crs) #crs_lonlat)
-#      #fig, ax = plt.subplots(figsize=(9, 9), subplot_kw=subplot_kw)
-
-#      ax.add_image(request, 15, zorder=0)
-#      ax.set_extent(( lonmin-n, lonmax+n, latmin-n, latmax+n ), crs=crs_lonlat)
-#      gl = ax.gridlines(crs=crs_lonlat, 
-#                  xlocs=np.arange(lonmin, lonmax, n), 
-#                  ylocs=np.arange(latmin, latmax, n), 
-#                  draw_labels=True)
-#      gl.xlabels_top = None
-#      gl.xformatter = LONGITUDE_FORMATTER
-#      gl.yformatter = LATITUDE_FORMATTER
-#      #ax.set_title('Plate carrée projection', va='bottom');
-#      ax.imshow(tmp, cmap='RdBu', extent=extent_lonlat, origin='upper', zorder=2 ) #ccrs.PlateCarree())transform=request.crs,
-
-
 ##-------------------------------------------------------------
 def plot_bs_maps(img, bed, bs, cmap, prefix):
    """
@@ -143,166 +100,6 @@ def plot_bs_maps(img, bed, bs, cmap, prefix):
    plt.savefig(base+'bs_map_bed_obs', dpi=300, bbox_inches='tight')
    plt.close('all')
    del fig
-
-   #----------------------------------------------------------------
-   X = bed['Xlon']
-   Y = bed['Ylat']
-
-   n = 0.0075
-
-   if np.ndim(img)>2: #multispectral
-
-      fig = plt.figure(frameon=False, dpi=300)
-      ax1 = fig.add_subplot(131)
-      map = Basemap(projection='merc', epsg='4326',
-          resolution = 'i', #h #f
-          llcrnrlon=np.min(X)-n, llcrnrlat=np.min(Y)-n,
-          urcrnrlon=np.max(X)+n, urcrnrlat=np.max(Y)+n)
-
-      try:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='World_Imagery', xpixels=1000, ypixels=None, dpi=300)
-      except:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='ESRI_Imagery_World_2D', xpixels=1000, ypixels=None, dpi=300)
-      finally:
-         pass
-
-      x = np.arange(bs[0]['xmin'],bs[0]['xmax'],bs[0]['gridres'])
-      y = np.arange(bs[0]['ymin'],bs[0]['ymax'],bs[0]['gridres'])
-
-      trans = pyproj.Proj(init=bs[0]['crs']['init'])
-
-      glon, glat = np.meshgrid(x, y)
-      glon, glat = trans(glon, glat, inverse=True)
-
-      mx,my = map.projtran(glon, glat)
-
-      tmp = np.flipud(img[:,:,0]).astype('float')
-      tmp[tmp==0] = np.nan
-
-      map.pcolormesh(mx, my, tmp, cmap='RdBu') #, cmap=cmap, vmin=0, vmax=len(bed['labels']))
-
-      parallels = np.arange(np.min(glat),np.max(glat),0.005)
-      map.drawparallels(parallels,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      meridians = np.arange(np.min(glon),np.max(glon),0.005)
-      map.drawmeridians(meridians,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-
-      ax1 = fig.add_subplot(132)
-      map = Basemap(projection='merc', epsg='4326',
-          resolution = 'i', #h #f
-          llcrnrlon=np.min(X)-n, llcrnrlat=np.min(Y)-n,
-          urcrnrlon=np.max(X)+n, urcrnrlat=np.max(Y)+n)
-
-      try:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='World_Imagery', xpixels=1000, ypixels=None, dpi=300)
-      except:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='ESRI_Imagery_World_2D', xpixels=1000, ypixels=None, dpi=300)
-      finally:
-         pass
-
-      x = np.arange(bs[0]['xmin'],bs[0]['xmax'],bs[0]['gridres'])
-      y = np.arange(bs[0]['ymin'],bs[0]['ymax'],bs[0]['gridres'])
-
-      trans = pyproj.Proj(init=bs[0]['crs']['init'])
-
-      glon, glat = np.meshgrid(x, y)
-      glon, glat = trans(glon, glat, inverse=True)
-
-      mx,my = map.projtran(glon, glat)
-
-      tmp = np.flipud(img[:,:,1]).astype('float')
-      tmp[tmp==0] = np.nan
-
-      map.pcolormesh(mx, my, tmp, cmap='RdBu') #, cmap=cmap, vmin=0, vmax=len(bed['labels']))
-
-      parallels = np.arange(np.min(glat),np.max(glat),0.005)
-      map.drawparallels(parallels,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      meridians = np.arange(np.min(glon),np.max(glon),0.005)
-      map.drawmeridians(meridians,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-
-      ax1 = fig.add_subplot(133)
-      map = Basemap(projection='merc', epsg='4326',
-          resolution = 'i', #h #f
-          llcrnrlon=np.min(X)-n, llcrnrlat=np.min(Y)-n,
-          urcrnrlon=np.max(X)+n, urcrnrlat=np.max(Y)+n)
-
-      try:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='World_Imagery', xpixels=1000, ypixels=None, dpi=300)
-      except:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='ESRI_Imagery_World_2D', xpixels=1000, ypixels=None, dpi=300)
-      finally:
-         pass
-
-      x = np.arange(bs[0]['xmin'],bs[0]['xmax'],bs[0]['gridres'])
-      y = np.arange(bs[0]['ymin'],bs[0]['ymax'],bs[0]['gridres'])
-
-      trans = pyproj.Proj(init=bs[0]['crs']['init'])
-
-      glon, glat = np.meshgrid(x, y)
-      glon, glat = trans(glon, glat, inverse=True)
-
-      mx,my = map.projtran(glon, glat)
-
-      tmp = np.flipud(img[:,:,2]).astype('float')
-      tmp[tmp==0] = np.nan
-
-      map.pcolormesh(mx, my, tmp, cmap='RdBu') #, cmap=cmap, vmin=0, vmax=len(bed['labels']))
-
-      parallels = np.arange(np.min(glat),np.max(glat),0.005)
-      map.drawparallels(parallels,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      meridians = np.arange(np.min(glon),np.max(glon),0.005)
-      map.drawmeridians(meridians,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      plt.savefig(base+'bs_map_image.png', dpi=300, bbox_inches='tight') #base+
-      plt.close('all')
-      del map, fig
-
-
-   else: #monospectral
-
-      fig = plt.figure(frameon=False, dpi=300)
-      ax1 = fig.add_subplot(311)
-      map = Basemap(projection='merc', epsg='4326',
-          resolution = 'i', #h #f
-          llcrnrlon=np.min(X)-n, llcrnrlat=np.min(Y)-n,
-          urcrnrlon=np.max(X)+n, urcrnrlat=np.max(Y)+n)
-
-      try:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='World_Imagery', xpixels=1000, ypixels=None, dpi=300)
-      except:
-         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='ESRI_Imagery_World_2D', xpixels=1000, ypixels=None, dpi=300)
-      finally:
-         pass
-
-      x = np.arange(bs[0]['xmin'],bs[0]['xmax'],bs[0]['gridres'])
-      y = np.arange(bs[0]['ymin'],bs[0]['ymax'],bs[0]['gridres'])
-
-      trans = pyproj.Proj(init=bs[0]['crs']['init'])
-
-      glon, glat = np.meshgrid(x, y)
-      glon, glat = trans(glon, glat, inverse=True)
-
-      mx,my = map.projtran(glon, glat)
-
-      tmp = np.flipud(img).astype('float')
-      tmp[tmp==0] = np.nan
-
-      map.pcolormesh(mx, my, tmp, cmap='RdBu') #, cmap=cmap, vmin=0, vmax=len(bed['labels']))
-
-      parallels = np.arange(np.min(glat),np.max(glat),0.005)
-      map.drawparallels(parallels,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      meridians = np.arange(np.min(glon),np.max(glon),0.005)
-      map.drawmeridians(meridians,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
-
-      plt.savefig(base+'bs_map_image.png', dpi=300, bbox_inches='tight') #base+
-      plt.close('all')
-      del map, fig
-
 
 ##-------------------------------------------------------------
 def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
@@ -1262,4 +1059,94 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    del map, fig
 
 
+#import cartopy.feature as cfeature
+#import cartopy.crs as ccrs
+#import matplotlib.pyplot as plt
+#from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+#import cartopy.io.img_tiles as cimgt
+
+#   extent_lonlat = ( lonmin, lonmax, latmin, latmax )
+#   crs_lonlat = ccrs.PlateCarree()
+
+
+#   #url = 'http://map1c.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi'
+#   #layer = 'BlueMarble_ShadedRelief_Bathymetry'
+#   #ax.add_wmts(url, layer, zorder=0)
+
+#   n = 0.01
+#   request = cimgt.GoogleTiles()
+#   request = cimgt.StamenTerrain()
+
+
+#   if np.ndim(img)>2: #multispectral#
+
+#      fig = plt.figure(frameon=False, dpi=600)
+
+#      tmp = img[:,:,0].astype('float')
+#      tmp[tmp==0] = np.nan
+
+#      ax = fig.add_subplot(111, projection=crs_lonlat)
+#      #subplot_kw = dict(projection=crs_lonlat) #request.crs) #crs_lonlat)
+#      #fig, ax = plt.subplots(figsize=(9, 9), subplot_kw=subplot_kw)
+
+#      ax.add_image(request, 15, zorder=0)
+#      ax.set_extent(( lonmin-n, lonmax+n, latmin-n, latmax+n ), crs=crs_lonlat)
+#      gl = ax.gridlines(crs=crs_lonlat, 
+#                  xlocs=np.arange(lonmin, lonmax, n), 
+#                  ylocs=np.arange(latmin, latmax, n), 
+#                  draw_labels=True)
+#      gl.xlabels_top = None
+#      gl.xformatter = LONGITUDE_FORMATTER
+#      gl.yformatter = LATITUDE_FORMATTER
+#      #ax.set_title('Plate carrée projection', va='bottom');
+#      ax.imshow(tmp, cmap='RdBu', extent=extent_lonlat, origin='upper', zorder=2 ) #ccrs.PlateCarree())transform=request.crs,
+
+
+
+#   #----------------------------------------------------------------
+#   X = bed['Xlon']
+#   Y = bed['Ylat']
+
+#   n = 0.0075
+
+#   if np.ndim(img)>2: #multispectral
+
+#      fig = plt.figure(frameon=False, dpi=300)
+#      ax1 = fig.add_subplot(131)
+#      map = Basemap(projection='merc', epsg='4326',
+#          resolution = 'i', #h #f
+#          llcrnrlon=np.min(X)-n, llcrnrlat=np.min(Y)-n,
+#          urcrnrlon=np.max(X)+n, urcrnrlat=np.max(Y)+n)
+
+#      try:
+#         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='World_Imagery', xpixels=1000, ypixels=None, dpi=300)
+#      except:
+#         map.arcgisimage(server='http://server.arcgisonline.com/ArcGIS', service='ESRI_Imagery_World_2D', xpixels=1000, ypixels=None, dpi=300)
+#      finally:
+#         pass
+
+#      x = np.arange(bs[0]['xmin'],bs[0]['xmax'],bs[0]['gridres'])
+#      y = np.arange(bs[0]['ymin'],bs[0]['ymax'],bs[0]['gridres'])
+
+#      trans = pyproj.Proj(init=bs[0]['crs']['init'])
+
+#      glon, glat = np.meshgrid(x, y)
+#      glon, glat = trans(glon, glat, inverse=True)
+
+#      mx,my = map.projtran(glon, glat)
+
+#      tmp = np.flipud(img[:,:,0]).astype('float')
+#      tmp[tmp==0] = np.nan
+
+#      map.pcolormesh(mx, my, tmp, cmap='RdBu') #, cmap=cmap, vmin=0, vmax=len(bed['labels']))
+
+#      parallels = np.arange(np.min(glat),np.max(glat),0.005)
+#      map.drawparallels(parallels,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
+
+#      meridians = np.arange(np.min(glon),np.max(glon),0.005)
+#      map.drawmeridians(meridians,labels=[1,0,0,1], color='w',fontsize=3, rotation=45, linewidth=0.25)
+
+#      plt.savefig(base+'bs_map_image.png', dpi=300, bbox_inches='tight') #base+
+#      plt.close('all')
+#      del map, fig
 

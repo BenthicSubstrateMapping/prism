@@ -549,13 +549,9 @@ def gui():
 	    "3. Press buttons to make plots!\n"
 	    "   GMM map = GMM predicted substrate & prob. maps\n" ,  
 	    "   CRF map = CRF predicted substrate & prob. maps\n" ,  
-	    "   *GMM map + image = GMM predicted substrate & prob. maps with background image\n" ,  
-	    "   *CRF map + image = CRF predicted substrate & prob. maps with background image\n" , 
 	    "   GMM & CRF maps = GMM and CRF predicted substrate maps side by side\n" ,    
-	    "   *GMM & CRF maps + image = GMM and CRF predicted substrate maps side by side with background images\n" ,    
 	    "   Backscatter per substrate = histograms of backscatter per substrate type\n" ,  
 	    "   Backscatter maps = maps backscatter with and without background image\n" ,  
-            "* = requires internet connection"
              ]
 
 
@@ -599,52 +595,52 @@ def gui():
 	self.plot2_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 3 
-	self.plot3_btn = Tkinter.Button(plot_frame, text='GMM map + base image', underline=0,
-		         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_image(self))
-	self.plot3_btn.grid(row=3, column=0, pady=(2,4))
-	self.plot3_btn.configure(background='#405d27', fg="white")
+	## check button for plot 3 
+	#self.plot3_btn = Tkinter.Button(plot_frame, text='GMM map + base image', underline=0,
+	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_image(self))
+	#self.plot3_btn.grid(row=3, column=0, pady=(2,4))
+	#self.plot3_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 4 
-	self.plot4_btn = Tkinter.Button(plot_frame, text='CRF map + base image', underline=0,
-		         command=lambda filt_heading=self.DATfilename.get(): _plot_crf_image(self))
-	self.plot4_btn.grid(row=3, column=1, pady=(2,4))
-	self.plot4_btn.configure(background='#405d27', fg="white")
+	## check button for plot 4 
+	#self.plot4_btn = Tkinter.Button(plot_frame, text='CRF map + base image', underline=0,
+	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_crf_image(self))
+	#self.plot4_btn.grid(row=3, column=1, pady=(2,4))
+	#self.plot4_btn.configure(background='#405d27', fg="white")
 
 	#=======================
 	# check button for plot 2a 
 	self.plot2a_btn = Tkinter.Button(plot_frame, text='CRF & GMM maps', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_crf(self))
-	self.plot2a_btn.grid(row=4, column=0, pady=(2,4))
+	self.plot2a_btn.grid(row=3, column=0, pady=(2,4))
 	self.plot2a_btn.configure(background='#405d27', fg="white")
 
 	#=======================
 	# check button for plot 4a 
-	self.plot4a_btn = Tkinter.Button(plot_frame, text='CRF & GMM maps + image', underline=0,
-		         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_crf_images(self))
-	self.plot4a_btn.grid(row=4, column=1, pady=(2,4))
-	self.plot4a_btn.configure(background='#405d27', fg="white")
+	#self.plot4a_btn = Tkinter.Button(plot_frame, text='CRF & GMM maps + image', underline=0,
+	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_crf_images(self))
+	#self.plot4a_btn.grid(row=4, column=1, pady=(2,4))
+	#self.plot4a_btn.configure(background='#405d27', fg="white")
 
 	#=======================
 	# check button for plot 5
 	self.plot5_btn = Tkinter.Button(plot_frame, text='Backscatter per substrate', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_dists_per_sed(self))
-	self.plot5_btn.grid(row=5, column=0, pady=(2,4))
+	self.plot5_btn.grid(row=3, column=1, pady=(2,4))
 	self.plot5_btn.configure(background='#405d27', fg="white")
 
 	#=======================
 	# check button for plot 6
 	self.plot6_btn = Tkinter.Button(plot_frame, text='Backscatter maps', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_bs(self))
-	self.plot6_btn.grid(row=5, column=1, pady=(2,4))
+	self.plot6_btn.grid(row=4, column=0, pady=(2,4))
 	self.plot6_btn.configure(background='#405d27', fg="white")
 
 	#=======================
 	# check button for plot 7
 	self.plot7_btn = Tkinter.Button(plot_frame, text='GMM confusion matrix', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_cm_gmm(self))
-	self.plot7_btn.grid(row=6, column=0, pady=(2,4))
+	self.plot7_btn.grid(row=4, column=1, pady=(2,4))
 	self.plot7_btn.configure(background='#405d27', fg="white")
 
 
@@ -652,7 +648,7 @@ def gui():
 	# check button for plot 8
 	self.plot8_btn = Tkinter.Button(plot_frame, text='CRF confusion matrix', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_cm_crf(self))
-	self.plot8_btn.grid(row=6, column=1, pady=(2,4))
+	self.plot8_btn.grid(row=5, column=0, pady=(2,4))
 	self.plot8_btn.configure(background='#405d27', fg="white")
 
 

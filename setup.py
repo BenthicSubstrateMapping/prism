@@ -69,7 +69,7 @@ def setupPackage():
          packages=['prism'],
          platforms='OS Independent',
          ext_modules=cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx']),
-         package_data={'prism': ['*.tiff', '*.shp', '*.shx', '*.dbf', '*.qpj', '*.prj', '*.cpg', '*.png', 'pydensecrf/*.pyx']}
+         package_data={'prism': ['*.png', 'pydensecrf/*.pyx', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.*']} #'*.tiff', '*.shp', '*.shx', '*.dbf', '*.qpj', '*.prj', '*.cpg'
    )
 
 if __name__ == '__main__':

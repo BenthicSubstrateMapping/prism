@@ -33,9 +33,6 @@ source activate prism_test
 pip install prism_mbes #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 ```
 
-
-
-
 finally deactivate the venv ::
 
 ```
@@ -96,8 +93,7 @@ virtualenv venv
 source venv/bin/activate
 pip install numpy
 pip install Cython
-pip install basemap --allow-external basemap --allow-unverified basemap
-pip install prism_mbes --no-deps
+pip install prism_mbes  #(or pip install git+https://github.com/dbuscombe-usgs/prism.git)
 deactivate ##(or source venv/bin/deactivate)
 ```
 
@@ -120,6 +116,8 @@ python -c "import prism; prism.gui_funcs.gui()"
 
 ## Using prism within python scripts
 
+A full worked example using the NEWBEX data set
+
 ```
 
 def run_prism():
@@ -141,6 +139,7 @@ def run_prism():
    chambolle = 0.0  #chambolle filter
    test_size = 0.5
 
+   ## update this with the full file path
    bs100 = 'newbex_mosaic_100.tiff'
    bs200 = 'newbex_mosaic_200.tiff'
    bs400 = 'newbex_mosaic_400.tiff'
