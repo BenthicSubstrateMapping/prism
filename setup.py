@@ -43,8 +43,8 @@ exec(line, globals())
 
 
 install_requires = [
-    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely', 'GDAL'
-] #'basemap', 'pydensecrf'
+    'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely'
+] #'basemap', 'pydensecrf', 'GDAL'
 
 def setupPackage():
    setup(name='prism_mbes',

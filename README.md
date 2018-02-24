@@ -48,16 +48,55 @@ python -c "import prism; prism.gui_funcs.gui()"
 finally deactivate the venv ::
 
 ```
-deactivate prism_test
+deactivate
+```
+
+Linux:
+
+```
+source deactivate
 ```
 
 If you get gdal/osgeo/ogr/os errors, install GDAL (Windows only)::
 1. Go to: https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal
-2. Download GDAL‑2.2.3‑cp27‑cp27m‑win_amd64.whl
+2. Download the appropriate file (for example, python 3.6, 64 bit = GDAL‑2.2.3‑cp36‑cp36m‑win32.whl )
 3. install using pip:
 
 ```
-pip install GDAL‑2.2.3‑cp27‑cp27m‑win_amd64.whl
+pip install GDAL‑2.2.3‑cp36‑cp36m‑win32.whl
 ```
+
+### Installing as a library accessible outside of virtual env
+
+
+1. From PyPI::
+
+```
+pip install prism_mbes
+```
+
+2. the latest 'bleeding edge' (pre-release) version directly from github::
+
+```
+pip install git+https://github.com/dbuscombe-usgs/prism.git
+```
+
+(Windows users) install git from here: https://git-scm.com/download/win
+
+
+3. from github repo clone::
+
+```
+git clone git@github.com:dbuscombe-usgs/prism.git
+cd prism
+python setup.py install
+```
+
+or a local installation:
+
+```
+python setup.py install --user
+```
+
 
 
