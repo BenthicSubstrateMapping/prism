@@ -42,6 +42,30 @@ with open(os.path.join('prism', '__init__.py')) as f:
 exec(line, globals())
 
 
+# Set this to True to enable building extensions using Cython.
+# Set it to False to build extensions from the C file (that
+# was previously created using Cython).
+# Set it to 'auto' to build with Cython if available, otherwise
+# from the C file.
+USE_CYTHON = True
+
+ext_modules = [ ]
+cmdclass = { }
+
+if USE_CYTHON:
+    ext_modules += [
+        Extension("eigen", [ "pydensecrf/eigen.pyx" ],
+        include_dirs=[np.get_include()]),
+        Extension("prism.densecrf", [ "pydensecrf/densecrf.pyx" ],
+    ]
+    cmdclass.update({ 'build_ext': build_ext })
+else:
+    ext_modules += [
+        Extension("eigen", [ "pydensecrf/eigen.c" ],
+        include_dirs=[np.get_include()]),
+        Extension("prism.densecrf", [ "pydensecrf/densecrf.c" ],
+    ]
+
 install_requires = [
     'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely'
 ] #'basemap', 'pydensecrf', 'GDAL'
@@ -67,9 +91,10 @@ def setupPackage():
          install_requires=install_requires,
          license = "GNU GENERAL PUBLIC LICENSE v3",
          packages=['prism'],
+         cmdclass = cmdclass,
+         ext_modules=ext_modules,
          platforms='OS Independent',
-         ext_modules=cythonize(['prism/pydensecrf/eigen.pyx', 'prism/pydensecrf/densecrf.pyx']),
-         package_data={'prism': ['*.png', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.shp', 'data/newbex/ref/*.shx', 'data/newbex/ref/*.dbf', 'data/newbex/ref/*.qpj', 'data/newbex/ref/*.prj', 'data/newbex/ref/*.cpg'], 'pydensecrf': ['*.pyx', '*.pyd']} #
+         package_data={'prism': ['*.png', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.shp', 'data/newbex/ref/*.shx', 'data/newbex/ref/*.dbf', 'data/newbex/ref/*.qpj', 'data/newbex/ref/*.prj', 'data/newbex/ref/*.cpg']} #
    )
 
 if __name__ == '__main__':
