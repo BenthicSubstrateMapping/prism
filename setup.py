@@ -25,13 +25,11 @@
 
 import os, sys, glob
 import inspect
-#from distutils.sysconfig import get_config_vars
 
 from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy as np
-from Cython.Distutils import build_ext
 
 # Directory of the current file 
 SETUP_DIRECTORY = os.path.dirname(os.path.abspath(inspect.getfile(
@@ -44,36 +42,6 @@ with open(os.path.join('prism', '__init__.py')) as f:
         line = f.readline()
 exec(line, globals())
 
-#(opt,) = get_config_vars('OPT')
-#os.environ['OPT'] = " ".join(
-#    flag for flag in opt.split() if flag != '-Wstrict-prototypes'
-#)
-
-# Set this to True to enable building extensions using Cython.
-# Set it to False to build extensions from the C file (that
-# was previously created using Cython).
-# Set it to 'auto' to build with Cython if available, otherwise
-# from the C file.
-USE_CYTHON = True
-
-ext_modules = [ ]
-cmdclass = { }
-
-if USE_CYTHON:
-    ext_modules += [
-        Extension("eigen", [ "pydensecrf/eigen.pyx" , 'pydensecrf/eigen_impl.cpp'], language = 'c++',
-        include_dirs=[np.get_include(), 'pydensecrf/densecrf/include']),
-        Extension("densecrf", [ "pydensecrf/densecrf.pyx", 'pydensecrf/densecrf/src/densecrf.cpp', 'pydensecrf/densecrf/src/unary.cpp', 'pydensecrf/densecrf/src/pairwise.cpp', 'pydensecrf/densecrf/src/permutohedral.cpp', 'pydensecrf/densecrf/src/optimization.cpp', 'pydensecrf/densecrf/src/objective.cpp', 'pydensecrf/densecrf/src/labelcompatibility.cpp', 'pydensecrf/densecrf/src/util.cpp', 'pydensecrf/densecrf/external/liblbfgs/lib/lbfgs.c' ], language = 'c++',
-        include_dirs=[np.get_include(), 'pydensecrf/densecrf/include', 'pydensecrf/densecrf/external/liblbfgs/include']),
-    ]
-    cmdclass.update({ 'build_ext': build_ext })
-else:
-    ext_modules += [
-        Extension("eigen", [ "pydensecrf/eigen.c" ], language = 'c++',
-        include_dirs=[np.get_include()]),
-        Extension("densecrf", [ "pydensecrf/densecrf.c" ], language = 'c++',
-        include_dirs=[np.get_include()]),
-    ]
 
 install_requires = [
     'numpy','scipy','Pillow','matplotlib', 'cython', 'pyproj', 'scikit-image', 'scikit-learn', 'tkcolorpicker', 'fiona', 'rasterio', 'shapely'
@@ -102,7 +70,7 @@ def setupPackage():
          packages=['prism'],
          platforms='OS Independent',
          ext_modules=cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx']),
-         package_data={'prism': ['*.png', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.shp', 'data/newbex/ref/*.shx', 'data/newbex/ref/*.dbf', 'data/newbex/ref/*.qpj', 'data/newbex/ref/*.prj', 'data/newbex/ref/*.cpg']} #
+         package_data={'prism': ['*.png', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.shp', 'data/newbex/ref/*.shx', 'data/newbex/ref/*.dbf', 'data/newbex/ref/*.qpj', 'data/newbex/ref/*.prj', 'data/newbex/ref/*.cpg', 'data/patricia/bs/*.tiff', 'data/patricia/ref/*.shp', 'data/patricia/ref/*.shx', 'data/patricia/ref/*.dbf', 'data/patricia/ref/*.qpj', 'data/patricia/ref/*.prj', 'data/patricia/ref/*.cpg']} #
    )
 
 #         cmdclass = cmdclass,
