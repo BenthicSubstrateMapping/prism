@@ -27,20 +27,18 @@ import os
 import numpy as np
 from prism.common_funcs import get_X
 
-try
+try:
    from mpl_toolkits.basemap import Basemap
 except:
    pass
 
-import cartopy.feature as cfeature
-import cartopy.crs as ccrs
-import matplotlib.pyplot as plt
-from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-import cartopy.io.img_tiles as cimgt
-
-
 ##-------------------------------------------------------------
 
+#import cartopy.feature as cfeature
+#import cartopy.crs as ccrs
+#import matplotlib.pyplot as plt
+#from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+#import cartopy.io.img_tiles as cimgt
 
 #   extent_lonlat = ( lonmin, lonmax, latmin, latmax )
 #   crs_lonlat = ccrs.PlateCarree()
