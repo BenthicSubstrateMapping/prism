@@ -91,7 +91,7 @@ def dotest():
    #bs200 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_200.tiff'
    #bs400 = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'bs'+os.sep+'mosaic_400.tiff'
    #refs_file = '..'+os.sep+'data'+os.sep+'newbex'+os.sep+'ref'+os.sep+'newbex_bed.shp'
-   prefix = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex')
+   prefix = os.path.normpath(os.path.join(os.path.expanduser("~"),'prism_test','newbex'))
 
    input = [bs100, bs200, bs400]
    img, bs = read_geotiff(input, gridres, chambolle)
