@@ -145,7 +145,7 @@ or alternatively from within the python console like so:
 
 ## More info
 
-Download the [user manual](https://daniel-buscombe.squarespace.com/s/prism_manual.pdf) 
+Download the [user manual](https://daniel-buscombe.squarespace.com/s/prism_manual-hwpp.pdf) 
 
 
 ## Using prism within python scripts
