@@ -17,7 +17,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
-
+# https://github.com/dbuscombe-usgs/prism
 
 # general
 from __future__ import division
@@ -70,7 +70,9 @@ from prism.plot_funcs import *
 
 ##-------------------------------------------------------------
 def gui():
-
+        """
+        This function creates the GUI
+        """
 	#=======================
 	# NOTE: Frame will make a top-level window if one doesn't already exist which
 	# can then be accessed via the frame's master attribute
@@ -241,7 +243,7 @@ def gui():
 	#=======================
 	def _proc(self):
            """
-           this function ...
+           this function allows the user read the data in
            """
            infiles = self.DATfilename.get().split() 
            input = []
@@ -290,7 +292,7 @@ def gui():
 	#=======================        
 	def _get_DAT(master, v):
            """
-           this function ...
+           this function allows the user to select backscatter file(s)
            """
            self.DATfile = askopenfilename(filetypes=[("Backscatter data files","*.tif *.tiff *.TIF *.TIFF")], multiple=True)
 
@@ -303,7 +305,7 @@ def gui():
 	#=======================
 	def _get_BED(master, v):
            """
-           this function ...
+           this function allows the user to select reference (bed observations) file
            """
            self.bedfile = askopenfilename(filetypes=[("Bed data files","*.shp *.csv")], multiple=False)
 
@@ -397,7 +399,7 @@ def gui():
 	#=======================
 	def _procGMM(self):
            """
-           this function ...
+           this function runs the GMM model
            """
            if self.covvar.get()==1:
               cov = 'full'
@@ -506,7 +508,7 @@ def gui():
 	#=======================
 	def _procCRF(self):
            """
-           this function ...
+           this function runs the CRF model
            """
            print('Iterations: %g' % self.nvar.get())
            print('Prob. threshold: %g' % self.pvar.get())
@@ -659,7 +661,7 @@ def gui():
 	# must press enter to set 
 	def _OnPressEnter1(self):
            """
-           sets prefix for file names on Enter press
+           this function sets prefix for file names on Enter press
            """
            self.prefix.set( self.prefix.get() )
            self.prefix_entry.focus_set()
@@ -669,6 +671,9 @@ def gui():
 
 	#=======================
 	def _get_cmap(self):
+           """
+           this function generates a colormap based on the number of unique labels
+           """
            cmap = plt.get_cmap('tab20b',len(self.bed['labels'])-1).colors
 
            cmap1 = []
@@ -680,7 +685,7 @@ def gui():
 	#=======================
 	def _pick_cmap(self):
            """
-           this function ...
+           this function allows the user to pick a color map for each substrate
            """
            labs = self.bed['labels'] #['1', '2', '3', '4'] #
 
@@ -701,7 +706,7 @@ def gui():
 	#=======================
 	def _plot_gmm(self):
            """
-           this function ...
+           this function makes plots of GMM results
            """
            if hasattr(self, 'cmap'): 
 
@@ -733,7 +738,7 @@ def gui():
 	#=======================
 	def _plot_crf(self):
            """
-           this function ...
+           this function makes plots of CRF results
            """
            if hasattr(self, 'cmap'):
 
@@ -761,11 +766,10 @@ def gui():
               tkMessageBox.showinfo("Done!", "Plot made") 
 
 
-
 	#=======================
 	def _plot_gmm_image(self):
            """
-           this function ...
+           this function makes plots of GMM results with underlying image (requires basemap)
            """
            if hasattr(self, 'cmap'):
 
@@ -796,7 +800,7 @@ def gui():
 	#=======================
 	def _plot_crf_image(self):
            """
-           this function ...
+           this function makes plots of CRF results with underlying image (requires basemap)
            """
            if hasattr(self, 'cmap'):
               in1 = self.y_pred_crf.copy()
@@ -826,7 +830,7 @@ def gui():
 	#=======================
 	def _plot_gmm_crf(self):
            """
-           this function ...
+           this function makes plots of GMM and CRF results side by side
            """
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_gmm.copy()
@@ -859,7 +863,7 @@ def gui():
 	#=======================
 	def _plot_gmm_crf_images(self):
            """
-           this function ...
+           this function makes plots of GMM and CRF results side by side with underlying image (requires basemap)
            """
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
 
@@ -893,7 +897,7 @@ def gui():
 	#=======================
 	def _plot_dists_per_sed(self):
            """
-           this function ...
+           this function plots the distributions of backscatter per substrate
            """
            if hasattr(self, 'cmap'):
               plot_dists_per_sed(self.Lc.copy(), self.img, self.bed, self.cmap, self.prefix.get())
@@ -914,7 +918,7 @@ def gui():
 	#=======================
 	def _plot_bs(self):
            """
-           this function ...
+           this function plots backscatter maps
            """
            if hasattr(self, 'cmap'):
               plot_bs_maps(self.img, self.bed, self.bs, self.cmap, self.prefix.get())
@@ -934,7 +938,7 @@ def gui():
 	#=======================
 	def _plot_cm_gmm(self):
            """
-           this function ...
+           this function plots GMM confusion matrix
            """
            if hasattr(self, 'y_pred_gmm'):
 
@@ -955,7 +959,7 @@ def gui():
 	#=======================
 	def _plot_cm_crf(self):
            """
-           this function ...
+           this function plots CRF confusion matrix
            """
            if hasattr(self, 'y_pred_crf'):
 
@@ -1054,7 +1058,9 @@ def gui():
 
 	#=======================
 	def _export1(self):
-
+           """
+           this function exports both CRF and GMM substrate maps
+           """
 
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_gmm.copy()
@@ -1076,6 +1082,10 @@ def gui():
 
 	#=======================
 	def _export2(self):
+           """
+           this function exports both CRF and GMM substrate maps and all
+           bed observation data
+           """
 
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_gmm.copy()
@@ -1100,6 +1110,9 @@ def gui():
 
 	#=======================
 	def _export3(self):
+           """
+           this function exports GMM substrate maps
+           """
 
            if hasattr(self, 'y_pred_gmm'):
               in1 = self.y_pred_gmm.copy()
@@ -1116,7 +1129,9 @@ def gui():
 
 	#=======================
 	def _export4(self):
-
+           """
+           this function exports CRF substrate maps
+           """
  
            if hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_crf.copy()
@@ -1133,7 +1148,9 @@ def gui():
 
 	#=======================
 	def _export5(self):
-
+           """
+           this function exports bed observation data
+           """
  
            if hasattr(self, 'bed'):
               export_bed_data(self.bed, self.prefix.get())

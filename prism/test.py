@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 # general
@@ -42,6 +43,10 @@ import shutil
 import errno
  
 def dircopy(src, dest):
+    """
+    This function copies data files to a directory accessible by the program (and the user)
+    which is the home diirectory of the user
+    """
     try:
         shutil.copytree(src, dest)
     except OSError as e:
@@ -58,7 +63,12 @@ __all__ = [
 ##-------------------------------------------------------------
 
 def dotest():
-
+   """
+   This function carries out a suite of tests of the program
+   on NEWBEX and Patricia Bay data, illustrating the full
+   functionality of the program as an API
+   Commented plotting functions require basemap and an internet connection
+   """
 
    # copy files over to somewhere read/writeable
    dircopy(prism.__path__[0], os.path.expanduser("~")+os.sep+'prism_test')

@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from __future__ import division
@@ -37,7 +38,7 @@ except:
 ##-------------------------------------------------------------
 def plot_bs_maps(img, bed, bs, cmap, prefix):
    """
-   This function ...
+   This function plots backscatter maps
    """
 
    lonmin = bs[0]['lonmin']
@@ -104,7 +105,7 @@ def plot_bs_maps(img, bed, bs, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
    """
-   This function ...
+   This function plots the distributions of backscatter per substrate
    """
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -197,7 +198,7 @@ def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of GMM results
    """
 
    y_prob[mask==1] = np.nan   
@@ -305,7 +306,7 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of GMM results with underlying image (requires basemap)
    """
 
    y_prob[mask==1] = np.nan   
@@ -427,7 +428,7 @@ def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of CRF results
    """
    
    y_prob[mask==1] = np.nan   
@@ -535,7 +536,7 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of CRF results with underlying image (requires basemap)
    """
    y_prob[mask==1] = np.nan   
    y_pred[mask==1] = np.nan
@@ -656,7 +657,7 @@ def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
 ##-------------------------------------------------------------
 def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of GMM and CRF results side by side
    """
    y_prob_gmm[mask==1] = np.nan   
    y_pred_gmm[mask==1] = np.nan
@@ -844,7 +845,7 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
 ##-------------------------------------------------------------
 def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, cmap, prefix):
    """
-   This function ...
+   This function makes plots of GMM and CRF results side by side with underlying image (requires basemap)
    """
    y_prob_gmm[mask==1] = np.nan   
    y_pred_gmm[mask==1] = np.nan

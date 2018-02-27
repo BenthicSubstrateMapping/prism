@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 import matplotlib.pyplot as plt
@@ -66,7 +67,7 @@ def plot_confusion_matrix(cm, classes,
 ##-------------------------------------------------------------
 def plot_confmatGMM(y_pred, Lc, bed, prefix):
    """
-   This function ...
+   This function generates and plots a confusion matrix for GMM model
    """
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -112,7 +113,7 @@ def plot_confmatGMM(y_pred, Lc, bed, prefix):
 ##-------------------------------------------------------------
 def plot_confmatCRF(y_pred, Lc, bed, prefix):
    """
-   This function ...
+   This function generates and plots a confusion matrix for CRF model
    """
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'

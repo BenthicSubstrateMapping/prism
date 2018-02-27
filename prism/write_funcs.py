@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from osgeo import gdal,ogr,osr
@@ -29,7 +30,8 @@ import csv
 ##-------------------------------------------------------------
 def export_bed_data(bed, prefix):
    """
-   This function ...
+   This function writes bed observations from within the surveyed extent
+   to a csv file, and shapefile with associated proj projection
    """
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -67,7 +69,8 @@ def export_bed_data(bed, prefix):
 ##-------------------------------------------------------------
 def export_crf_gtiff(mask, y_pred, y_prob, bs, prefix):
    """
-   This function ...
+   This function writes the CRF substrate and probability maps
+   to GeoTIFF format
    """
 
    prob = y_prob.copy()
@@ -138,7 +141,8 @@ def export_crf_gtiff(mask, y_pred, y_prob, bs, prefix):
 ##-------------------------------------------------------------
 def export_gmm_gtiff(mask, y_pred, y_prob, bs, prefix):
    """
-   This function ...
+   This function writes the GMM substrate and probability maps
+   to GeoTIFF format
    """
    prob = y_prob.copy()
    pred = y_pred.copy()

@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from __future__ import division
@@ -28,7 +29,7 @@ from scipy.stats import mode as md
 ##-------------------------------------------------------------
 def set_unary_from_labels(fp, lp, prob, labels):
    """
-   This function ...
+   This function sets unary potentials according to the label matrix
    """
    H = fp.shape[0]
    W = fp.shape[1]
@@ -43,7 +44,8 @@ def set_unary_from_labels(fp, lp, prob, labels):
 ##-------------------------------------------------------------
 def set_feats_both(d, fp, scol, compat_col, sspat, compat_spat):
    """
-   This function ...
+   This function generates features according to both spatial and 
+   amplitude kernels
    """
 
    d = set_feats_spat(d, sspat, compat_spat, mode)
@@ -54,7 +56,7 @@ def set_feats_both(d, fp, scol, compat_col, sspat, compat_spat):
 ##-------------------------------------------------------------
 def set_feats_spat(d, sspat, compat_spat):
    """
-   This function ...
+   This function generates features according to spatial kernel
    """
 
    d.addPairwiseGaussian(sxy=sspat, compat=compat_spat)
@@ -64,7 +66,7 @@ def set_feats_spat(d, sspat, compat_spat):
 ##-------------------------------------------------------------
 def set_feats_col(fp, d, scol, compat_col):
    """
-   This function ...
+   This function generates features according to amplitude kernel
    """
 
    scale = 1
@@ -88,7 +90,10 @@ def set_feats_col(fp, d, scol, compat_col):
 ##-------------------------------------------------------------
 def inference(d, n_iter, H, W, labels):
    """
-   This function ...
+   This function carries out the CRF inference, generating a MAP
+   substrate matrix, a conservative probabilistic map based on
+   frequentist principles, and a probability per substrate based on
+   the CRF inference
    """
    R = [] ; 
    Q, tmp1, tmp2 = d.startInference()
@@ -115,7 +120,7 @@ def inference(d, n_iter, H, W, labels):
 ##-------------------------------------------------------------
 def apply_CRF(fp, lp, labels, n_iter, prob_thres, scol, compat_col):
    """
-   This function ...
+   This function generates CRF-derived substrate map and probability map
    """
 
    prob = 0.51 # initial probability of unary labels

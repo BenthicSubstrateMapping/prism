@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from __future__ import division
@@ -31,7 +32,7 @@ from shapely.geometry import Point
 ##-------------------------------------------------------------
 def read_csvfile(refs_file, bs):
    """
-   This function ...
+   This function reads bed observations from a csv file. Fields must be X, Y, ID
    """
    dat = np.genfromtxt(refs_file, delimiter=',', names=True, dtype=[float, float, float, "|S10"] )
 
@@ -103,7 +104,7 @@ def read_csvfile(refs_file, bs):
 ##-------------------------------------------------------------
 def read_shpfile(refs_file, bs):
    """
-   This function ...
+   This function reads bed observations from a shapefile (.shp) file. 
    """
 
    print('Reading and filtering bed observation data ...')
@@ -191,7 +192,9 @@ def read_shpfile(refs_file, bs):
 ##-------------------------------------------------------------
 def read_geotiff(input, gridres, chambolle):
    """
-   This function ...
+   This function reads backscatter in GeoTIFF format. For monospectral data,
+   this is a single .tiff file containing a 2D grid. For multispectral data,
+   this is multiple .tiff files, each containing a 2D grid
    """
    ## input = list of strings of filenames
    ## output gridres = grd resolution in m

@@ -18,6 +18,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 #-----------------------------------------------------------------------------
 # Imports
@@ -48,6 +49,9 @@ install_requires = [
 ] #'basemap', 'pydensecrf', 'GDAL'
 
 def setupPackage():
+   """
+   This function installs the package
+   """
    setup(name='prism_mbes',
          version=__version__,
          description='Buscombe, D., 2017',

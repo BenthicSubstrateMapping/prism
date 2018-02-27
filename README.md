@@ -239,5 +239,10 @@ if __name__ == '__main__':
 
 ```
 
+## Version History
+
+v. 0.1. 2/26/2018. Initial public release
+
+
 
 

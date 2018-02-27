@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from __future__ import division
@@ -24,7 +25,7 @@ import numpy as np
 ##-------------------------------------------------------------
 def get_X(img, Lc):
    """
-   This function ...
+   This function computes distributions of backscatter according to each unique substrate
    """
    D = []
    counter = 0
@@ -51,7 +52,10 @@ def get_X(img, Lc):
 ##-------------------------------------------------------------
 def get_sparse_labels(bs, bed, buff):
    """
-   This function ...
+   This function generates a sparse label map by assigning
+   unique numeric codes to portions of a matrix of identical
+   size to the backscatter inputs, according to the locations
+   of bed observations and a buffer distance
    """
    ## make sparse labels
    Lc = np.zeros(np.shape(bs[0]['bs']))+99

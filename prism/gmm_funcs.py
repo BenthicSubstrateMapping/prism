@@ -16,6 +16,7 @@
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
+# https://github.com/dbuscombe-usgs/prism
 
 ##-------------------------------------------------------------
 from __future__ import division
@@ -31,7 +32,8 @@ from prism.common_funcs import get_X
 ##-------------------------------------------------------------
 def fit_GMM(img, Lc, test_size, covariance, tol):
    """
-   This function ...
+   This function fits a simple GMM model to the backscatter data
+   and associated labels
    """
    D, l = get_X(img, Lc)
 
@@ -55,8 +57,10 @@ def fit_GMM(img, Lc, test_size, covariance, tol):
 ##-------------------------------------------------------------
 def apply_GMM(g, img, prob_thres):
    """
-   This function ...
+   This function fits applies a GMM model to generate a substrate and
+   associated probability map
    """
+
    print('Estimating substrates ...')
    if np.ndim(img)>2: #multispectral
 
