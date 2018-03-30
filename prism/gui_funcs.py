@@ -70,9 +70,6 @@ from prism.plot_funcs import *
 
 ##-------------------------------------------------------------
 def gui():
-    """
-    This function creates the GUI
-    """
     #=======================
     # NOTE: Frame will make a top-level window if one doesn't already exist which
     # can then be accessed via the frame's master attribute
