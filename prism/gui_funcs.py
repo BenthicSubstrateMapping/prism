@@ -1,18 +1,18 @@
 ##-------------------------------------------------------------
-#    ____  ____  ___ ____  __  __     
-#   |  _ \|  _ \|_ _/ ___||  \/  |  _ 
+#    ____  ____  ___ ____  __  __
+#   |  _ \|  _ \|_ _/ ___||  \/  |  _
 #   | |_) | |_) || |\___ \| |\/| | (_)
-#   |  __/|  _ < | | ___) | |  | |  _ 
+#   |  __/|  _ < | | ___) | |  | |  _
 #   |_|   |_| \_\___|____/|_|  |_| (_)
-#                                     
-#   ___                 _      _                  __                   __      
-#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _ 
-#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_ 
-#                                                                              
-#    __                                          
-#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _  
-#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_| 
-#                                  |  |       _| 
+#
+#   ___                 _      _                  __                   __
+#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _
+#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_
+#
+#    __
+#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _
+#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_|
+#                                  |  |       _|
 #
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -70,33 +70,33 @@ from prism.plot_funcs import *
 
 ##-------------------------------------------------------------
 def gui():
-        """
-        This function creates the GUI
-        """
-	#=======================
-	# NOTE: Frame will make a top-level window if one doesn't already exist which
-	# can then be accessed via the frame's master attribute
-	# make a Frame whose parent is root, named "prism"
-	master = Tkinter.Frame(name='prism')
+    """
+    This function creates the GUI
+    """
+    #=======================
+    # NOTE: Frame will make a top-level window if one doesn't already exist which
+    # can then be accessed via the frame's master attribute
+    # make a Frame whose parent is root, named "prism"
+    master = Tkinter.Frame(name='prism')
 
-	self = master.master  # short-cut to top-level window
-	master.pack()  # pack the Frame into root, defaults to side=TOP
-	self.title('PriSM: Probabilistic Acoustic Sediment Mapping')  # name the window
+    self = master.master  # short-cut to top-level window
+    master.pack()  # pack the Frame into root, defaults to side=TOP
+    self.title('PriSM: Probabilistic Acoustic Sediment Mapping')  # name the window
 
-	# field for DAT filename
-	self.DATfilename = Tkinter.StringVar()
-	self.DATfilename.set(u" ")
+    # field for DAT filename
+    self.DATfilename = Tkinter.StringVar()
+    self.DATfilename.set(u" ")
 
-	# field for bed filename
-	self.BEDfilename = Tkinter.StringVar()
-	self.BEDfilename.set(None)
-	       
-	# create notebook
-	demoPanel = Tkinter.Frame(master, name='demo')  # create a new frame slaved to master
-	demoPanel.pack()  # pack the Frame into root
+    # field for bed filename
+    self.BEDfilename = Tkinter.StringVar()
+    self.BEDfilename.set(None)
 
-	# create (notebook) demo panel
-	nb = ttk.Notebook(demoPanel, name='notebook')  # create the ttk.Notebook widget
+    # create notebook
+    demoPanel = Tkinter.Frame(master, name='demo')  # create a new frame slaved to master
+    demoPanel.pack()  # pack the Frame into root
+
+    # create (notebook) demo panel
+    nb = ttk.Notebook(demoPanel, name='notebook')  # create the ttk.Notebook widget
 
 	# extend bindings to top level window allowing
 	#   CTRL+TAB - cycles thru tabs
@@ -129,7 +129,7 @@ def gui():
 	    "\n",
 	    "The program is written and maintained by Dr Daniel Buscombe,\n",
 	    "Northern Arizona University. Email daniel.buscombe@nau.edu\n",
-	    "\n",    
+	    "\n",
 	    "The tabs are to be navigated in order (read, classify, plot, export)\n",
 	    "\n",
 	    "Please visit the website for more info: https://www.danielbuscombe.com/prism/"]
@@ -137,7 +137,7 @@ def gui():
 	lbl = Tkinter.Label(frame, wraplength='4i', justify=Tkinter.LEFT, anchor=Tkinter.N,
 		        text=''.join(About_msg), fg="white")
 	lbl.configure(background='black')
-		        
+
 	# position and set resize behavior
 	lbl.grid(row=0, column=0, columnspan=2, sticky='new', pady=5)
 	frame.rowconfigure(1, weight=1)
@@ -147,12 +147,12 @@ def gui():
 	image_panel = Tkinter.Canvas(frame, width = 250, height =232)#, cursor = "cross")
 	image_panel.grid(column = 0, row = 2)
 	image_panel.configure(background='black')
-	 
+
 	show_image = ImageTk.PhotoImage(Image.open(prism.__path__[0]+os.sep+"prism_logo_blk_sm.png"))
 	#show_image = ImageTk.PhotoImage(Image.open("prism_logo_blk_sm.png"))
 	# show the panel
-	image_panel.create_image(0, 0, anchor=Tkinter.NW, image=show_image) 
-		
+	image_panel.create_image(0, 0, anchor=Tkinter.NW, image=show_image)
+
 	# add to notebook (underline = index for short-cut character)
 	nb.add(frame, text='About', underline=0, padding=2)
 
@@ -175,20 +175,20 @@ def gui():
 	    "INSTRUCTIONS:\n\n",
 	    "1. Select backscatter geotiff file(s) \n\n",
 	    "2. Select bed observations file (csv or ESRI shapefile)\n\n",
-	    "3. Set output grid resolution (m). Default=1\n\n" ,  
-	    "4. Set buffer distance (m). Default=10\n\n",    
+	    "3. Set output grid resolution (m). Default=1\n\n" ,
+	    "4. Set buffer distance (m). Default=10\n\n",
 	    "5. Set weight for chambolle filter (0 for no filter). Default=0.2"]
 
 	lbl2 = Tkinter.Label(read_frame, wraplength='4i', justify=Tkinter.LEFT, anchor=Tkinter.N,
 		        text=''.join(Read_msg))
 
 	lbl2.configure(background='#6b5b95', fg="white")
-		        
+
 	# position and set resize behavior
 	lbl2.grid(row=0, column=0, columnspan=1, sticky='new', pady=5)
 
 	#=======================
-	# get backscatter data file(s)         
+	# get backscatter data file(s)
 	datVar = Tkinter.StringVar()
 	self.read_bs_btn = Tkinter.Button(read_frame, text='Get backscatter data file(s)', underline=0,
 		         command=lambda v=datVar: _get_DAT(master, v))
@@ -245,7 +245,7 @@ def gui():
            """
            this function allows the user read the data in
            """
-           infiles = self.DATfilename.get().split() 
+           infiles = self.DATfilename.get().split()
            input = []
            for k in infiles:
               k = k.replace(',','')
@@ -271,25 +271,25 @@ def gui():
            elif ext == '.txt':
               self.bed = read_csvfile(self.BEDfilename.get(), self.bs)
            else:
-              tkMessageBox.showinfo("Error", "Bed Observation file format not supported") 
+              tkMessageBox.showinfo("Error", "Bed Observation file format not supported")
 
-           if hasattr(self, 'bed'): 
+           if hasattr(self, 'bed'):
 
               self.Lc = get_sparse_labels(self.bs, self.bed, np.int(self.buffvar.get()) )
-			  
+
               if np.ndim(self.img)>2:
                  self.mask = self.img[:,:,0]==0
               else:
                  self.mask = self.img==0
-              
+
               self.proc_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Read module finished") 
+              tkMessageBox.showinfo("Done!", "Read module finished")
            else:
-              tkMessageBox.showinfo("Error", "Select valid bed observation file first!") 
+              tkMessageBox.showinfo("Error", "Select valid bed observation file first!")
 
 
-	#=======================        
+	#=======================
 	def _get_DAT(master, v):
            """
            this function allows the user to select backscatter file(s)
@@ -297,10 +297,10 @@ def gui():
            self.DATfile = askopenfilename(filetypes=[("Backscatter data files","*.tif *.tiff *.TIF *.TIFF")], multiple=True)
 
            self.DATfilename.set(self.DATfile)
-	    
+
            self.read_bs_btn.configure(fg='#d64161', background="white")
 
-           self.update()    
+           self.update()
 
 	#=======================
 	def _get_BED(master, v):
@@ -312,9 +312,9 @@ def gui():
            self.BEDfilename.set(self.bedfile)
 
            self.read_bed_btn.configure(fg='#d64161', background="white")
-  
-           self.update()    
-       
+
+           self.update()
+
 	#==============================================================
 	#========END functions for read tab
 
@@ -338,10 +338,10 @@ def gui():
 	    "1. Select proportion of data to use for test. Default=0.5 \n\n",
 	    "2. Set probability threshold (probabilities less than this are 'unknown'). Default=0.7\n\n",
 	    "3. Select covariance type. Default=1\n",
-	    "   1='full' (each component has its own general covariance matrix)\n" ,  
-	    "   2='tied' (all components share the same general covariance matrix)\n" ,  
-	    "   3='diagonal' (each component has its own diagonal covariance matrix)\n" ,  
-	    "   4='spherical' (each component has its own single variance)\n\n" ,  
+	    "   1='full' (each component has its own general covariance matrix)\n" ,
+	    "   2='tied' (all components share the same general covariance matrix)\n" ,
+	    "   3='diagonal' (each component has its own diagonal covariance matrix)\n" ,
+	    "   4='spherical' (each component has its own single variance)\n\n" ,
 	    "4. Set tolerance. Default=1e-2"]
 
 
@@ -349,7 +349,7 @@ def gui():
 		        text=''.join(Read_msg))
 
 	lbl2.configure(background='#674d3c', fg="white")
-		        
+
 	# position and set resize behavior
 	lbl2.grid(row=0, column=0, columnspan=1, sticky='new', pady=5)
 
@@ -415,7 +415,7 @@ def gui():
            print('Tolerance: %f' % self.tolvar.get())
            print('Test size: %f' % self.tvar.get())
 
-           if hasattr(self, 'img'): 
+           if hasattr(self, 'img'):
               self.g = fit_GMM(self.img, self.Lc, self.tvar.get(), cov, self.tolvar.get())
 
               self.y_pred_gmm, self.y_prob_gmm, self.y_prob_per_class_gmm = apply_GMM(self.g, self.img, self.pvar.get())
@@ -423,9 +423,9 @@ def gui():
               self.gmmproc_btn.configure(fg='#d64161', background="white")
               self.update()
               tkMessageBox.showinfo("Done!", "GMM:Classify module finished")
- 
+
            else:
-              tkMessageBox.showinfo("Error", "Read backscatter data in first!") 
+              tkMessageBox.showinfo("Error", "Read backscatter data in first!")
 
 
 	#==============================================================
@@ -458,7 +458,7 @@ def gui():
 		        text=''.join(Read_msg))
 
 	lbl2.configure(background='#4040a1', fg="white")
-		        
+
 	# position and set resize behavior
 	lbl2.grid(row=0, column=0, columnspan=1, sticky='new', pady=5)
 
@@ -515,15 +515,15 @@ def gui():
            print('Theta: %f' % self.thetavar.get())
            print('Mu: %f' % self.muvar.get())
 
-           if hasattr(self, 'img'): 
+           if hasattr(self, 'img'):
               self.y_pred_crf, self.y_prob_crf, self.y_prob_per_class_crf = apply_CRF(self.img, self.Lc, self.bed['labels'], np.int(self.nvar.get()), self.pvar.get(), np.int(self.thetavar.get()), np.int(self.muvar.get()) )
 
               self.crfproc_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "CRF:Classify module finished") 
- 
+              tkMessageBox.showinfo("Done!", "CRF:Classify module finished")
+
            else:
-              tkMessageBox.showinfo("Error", "Read backscatter data in first!") 
+              tkMessageBox.showinfo("Error", "Read backscatter data in first!")
 
 
 	#==============================================================
@@ -549,11 +549,11 @@ def gui():
 	    "1. Write a prefix for file names and press Enter\n"
 	    "2. Make a color ramp by selecting colors for each substrate\n"
 	    "3. Press buttons to make plots!\n"
-	    "   GMM map = GMM predicted substrate & prob. maps\n" ,  
-	    "   CRF map = CRF predicted substrate & prob. maps\n" ,  
-	    "   GMM & CRF maps = GMM and CRF predicted substrate maps side by side\n" ,    
-	    "   Backscatter per substrate = histograms of backscatter per substrate type\n" ,  
-	    "   Backscatter maps = maps backscatter with and without background image\n" ,  
+	    "   GMM map = GMM predicted substrate & prob. maps\n" ,
+	    "   CRF map = CRF predicted substrate & prob. maps\n" ,
+	    "   GMM & CRF maps = GMM and CRF predicted substrate maps side by side\n" ,
+	    "   Backscatter per substrate = histograms of backscatter per substrate type\n" ,
+	    "   Backscatter maps = maps backscatter with and without background image\n" ,
              ]
 
 
@@ -561,7 +561,7 @@ def gui():
 		        text=''.join(Read_msg))
 
 	lbl2.configure(background='#405d27', fg="white")
-		        
+
 	# position and set resize behavior
 	lbl2.grid(row=0, column=0, columnspan=1, sticky='new', pady=5)
 
@@ -583,42 +583,42 @@ def gui():
 	self.cmap_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 1 
+	# check button for plot 1
 	self.plot1_btn = Tkinter.Button(plot_frame, text='GMM map', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm(self))
 	self.plot1_btn.grid(row=2, column=0, pady=(2,4))
 	self.plot1_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 2 
+	# check button for plot 2
 	self.plot2_btn = Tkinter.Button(plot_frame, text='CRF map', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_crf(self))
 	self.plot2_btn.grid(row=2, column=1, pady=(2,4))
 	self.plot2_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	## check button for plot 3 
+	## check button for plot 3
 	#self.plot3_btn = Tkinter.Button(plot_frame, text='GMM map + base image', underline=0,
 	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_image(self))
 	#self.plot3_btn.grid(row=3, column=0, pady=(2,4))
 	#self.plot3_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	## check button for plot 4 
+	## check button for plot 4
 	#self.plot4_btn = Tkinter.Button(plot_frame, text='CRF map + base image', underline=0,
 	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_crf_image(self))
 	#self.plot4_btn.grid(row=3, column=1, pady=(2,4))
 	#self.plot4_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 2a 
+	# check button for plot 2a
 	self.plot2a_btn = Tkinter.Button(plot_frame, text='CRF & GMM maps', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_crf(self))
 	self.plot2a_btn.grid(row=3, column=0, pady=(2,4))
 	self.plot2a_btn.configure(background='#405d27', fg="white")
 
 	#=======================
-	# check button for plot 4a 
+	# check button for plot 4a
 	#self.plot4a_btn = Tkinter.Button(plot_frame, text='CRF & GMM maps + image', underline=0,
 	#	         command=lambda filt_heading=self.DATfilename.get(): _plot_gmm_crf_images(self))
 	#self.plot4a_btn.grid(row=4, column=1, pady=(2,4))
@@ -658,7 +658,7 @@ def gui():
 	#========START functions for plot tab
 
 	#=======================
-	# must press enter to set 
+	# must press enter to set
 	def _OnPressEnter1(self):
            """
            this function sets prefix for file names on Enter press
@@ -708,7 +708,7 @@ def gui():
            """
            this function makes plots of GMM results
            """
-           if hasattr(self, 'cmap'): 
+           if hasattr(self, 'cmap'):
 
               in1 = self.y_pred_gmm.copy()
               #in1[self.mask] = np.nan
@@ -716,14 +716,14 @@ def gui():
               in2 = self.y_prob_gmm.copy()
               #in2[self.mask] = np.nan
 
-              plot_gmm(self.mask, in1, in2, self.bs, 
+              plot_gmm(self.mask, in1, in2, self.bs,
                        self.bed, self.cmap, self.prefix.get())
 
               self.plot1_btn.configure(fg='#d64161', background="white")
 
               del in1, in2
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -731,7 +731,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 
 
@@ -748,14 +748,14 @@ def gui():
               in2 = self.y_prob_crf.copy()
               #in2[self.mask] = np.nan
 
-              plot_crf(self.mask, in1, in2, self.bs, 
+              plot_crf(self.mask, in1, in2, self.bs,
                        self.bed, self.cmap, self.prefix.get())
 
               self.plot2_btn.configure(fg='#d64161', background="white")
 
               del in1, in2
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -763,7 +763,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 
 	#=======================
@@ -779,14 +779,14 @@ def gui():
               in2 = self.y_prob_gmm.copy()
               #in2[self.mask] = np.nan
 
-              plot_gmm_image(self.mask, in1, in2, self.bs, 
+              plot_gmm_image(self.mask, in1, in2, self.bs,
                              self.bed, self.cmap, self.prefix.get())
 
               self.plot3_btn.configure(fg='#d64161', background="white")
 
               del in1, in2
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -794,7 +794,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 
 	#=======================
@@ -809,14 +809,14 @@ def gui():
               in2 = self.y_prob_crf.copy()
               #in2[self.mask] = np.nan
 
-              plot_crf_image(self.mask, in1, in2, self.bs, 
+              plot_crf_image(self.mask, in1, in2, self.bs,
                              self.bed, self.cmap, self.prefix.get())
 
               self.plot4_btn.configure(fg='#d64161', background="white")
 
               del in1, in2
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -824,7 +824,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 
 	#=======================
@@ -855,10 +855,10 @@ def gui():
 
               del in1, in2, in3, in4
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
-              tkMessageBox.showinfo("Process", "Process both GMM and CRF first!") 
+              tkMessageBox.showinfo("Process", "Process both GMM and CRF first!")
 
 	#=======================
 	def _plot_gmm_crf_images(self):
@@ -889,10 +889,10 @@ def gui():
 
               del in1, in2, in3, in4
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
-              tkMessageBox.showinfo("Process", "Process both GMM and CRF first!") 
+              tkMessageBox.showinfo("Process", "Process both GMM and CRF first!")
 
 	#=======================
 	def _plot_dists_per_sed(self):
@@ -904,7 +904,7 @@ def gui():
 
               self.plot5_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -912,7 +912,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 
 	#=======================
@@ -925,7 +925,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
               self.cmap = _get_cmap(self)
@@ -933,7 +933,7 @@ def gui():
 
               self.plot6_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
 	#=======================
 	def _plot_cm_gmm(self):
@@ -951,10 +951,10 @@ def gui():
 
               del in1
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
-              tkMessageBox.showinfo("Error", "Run GMM model first!") 
+              tkMessageBox.showinfo("Error", "Run GMM model first!")
 
 	#=======================
 	def _plot_cm_crf(self):
@@ -972,10 +972,10 @@ def gui():
 
               del in1
               self.update()
-              tkMessageBox.showinfo("Done!", "Plot made") 
+              tkMessageBox.showinfo("Done!", "Plot made")
 
            else:
-              tkMessageBox.showinfo("Error", "Run CRF model first!") 
+              tkMessageBox.showinfo("Error", "Run CRF model first!")
 
 
 	#==============================================================
@@ -1000,11 +1000,11 @@ def gui():
 	    "INSTRUCTIONS:\n\n",
 	    "1. On previous tab, set file prefix\n\n"
 	    "2. Press buttons to export results!\n"
-            "   GMM & CRF raster tifs = substrate maps, geotif format\n" 
-            "   GMM raster tif = substrate map, geotif format\n" 
-            "   CRF raster tif = substrate map, geotif format\n" 
-            "   Bed observations = bed observations, csv and shapefile format\n" 
-            "   All data = substrate map(s) in geotif format, probability rasters, bed observations\n" 
+            "   GMM & CRF raster tifs = substrate maps, geotif format\n"
+            "   GMM raster tif = substrate map, geotif format\n"
+            "   CRF raster tif = substrate map, geotif format\n"
+            "   Bed observations = bed observations, csv and shapefile format\n"
+            "   All data = substrate map(s) in geotif format, probability rasters, bed observations\n"
              ]
 
 
@@ -1012,19 +1012,19 @@ def gui():
 		        text=''.join(Read_msg))
 
 	lbl2.configure(background='#DC143C', fg="white")
-		        
+
 	# position and set resize behavior
 	lbl2.grid(row=0, column=0, columnspan=1, sticky='new', pady=5)
 
 	#=======================
-	# check button for export 1 
+	# check button for export 1
 	self.export1_btn = Tkinter.Button(export_frame, text='GMM & CRF raster tifs', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _export1(self))
 	self.export1_btn.grid(row=1, column=0, pady=(2,4))
 	self.export1_btn.configure(background='#DC143C', fg="white")
 
 	#=======================
-	# check button for export 2 
+	# check button for export 2
 	self.export2_btn = Tkinter.Button(export_frame, text='All data', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _export2(self))
 	self.export2_btn.grid(row=1, column=1, pady=(2,4))
@@ -1039,7 +1039,7 @@ def gui():
 	self.export3_btn.configure(background='#DC143C', fg="white")
 
 	#=======================
-	# check button for export 4 
+	# check button for export 4
 	self.export4_btn = Tkinter.Button(export_frame, text='CRF raster tif', underline=0,
 		         command=lambda filt_heading=self.DATfilename.get(): _export4(self))
 	self.export4_btn.grid(row=2, column=1, pady=(2,4))
@@ -1065,20 +1065,20 @@ def gui():
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_gmm.copy()
               in2 = self.y_prob_gmm.copy()
-		   
+
               export_gmm_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
-			  
+
               in1 = self.y_pred_crf.copy()
               in2 = self.y_prob_crf.copy()
-			  
+
               export_crf_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
 
               self.export1_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Data exported") 
+              tkMessageBox.showinfo("Done!", "Data exported")
 
            else:
-              tkMessageBox.showinfo("Error", "Analyze data first!") 
+              tkMessageBox.showinfo("Error", "Analyze data first!")
 
 	#=======================
 	def _export2(self):
@@ -1090,22 +1090,22 @@ def gui():
            if hasattr(self, 'y_pred_gmm') and hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_gmm.copy()
               in2 = self.y_prob_gmm.copy()
-		   
+
               export_gmm_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
-			  
+
               in1 = self.y_pred_crf.copy()
               in2 = self.y_prob_crf.copy()
-			  
+
               export_crf_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
 
               export_bed_data(self.bed, self.prefix.get())
 
               self.export2_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Data exported") 
+              tkMessageBox.showinfo("Done!", "Data exported")
 
            else:
-              tkMessageBox.showinfo("Error", "Analyze data first!") 
+              tkMessageBox.showinfo("Error", "Analyze data first!")
 
 
 	#=======================
@@ -1117,50 +1117,50 @@ def gui():
            if hasattr(self, 'y_pred_gmm'):
               in1 = self.y_pred_gmm.copy()
               in2 = self.y_prob_gmm.copy()
-		   
+
               export_gmm_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
-			  
+
               self.export3_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Data exported") 
+              tkMessageBox.showinfo("Done!", "Data exported")
 
            else:
-              tkMessageBox.showinfo("Error", "Analyze data first!") 
+              tkMessageBox.showinfo("Error", "Analyze data first!")
 
 	#=======================
 	def _export4(self):
            """
            this function exports CRF substrate maps
            """
- 
+
            if hasattr(self, 'y_pred_crf'):
               in1 = self.y_pred_crf.copy()
               in2 = self.y_prob_crf.copy()
-			  
+
               export_crf_gtiff(self.mask, in1, in2, self.bs, self.prefix.get())
-			  
+
               self.export4_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Data exported") 
+              tkMessageBox.showinfo("Done!", "Data exported")
 
            else:
-              tkMessageBox.showinfo("Error", "Analyze data first!") 
+              tkMessageBox.showinfo("Error", "Analyze data first!")
 
 	#=======================
 	def _export5(self):
            """
            this function exports bed observation data
            """
- 
+
            if hasattr(self, 'bed'):
               export_bed_data(self.bed, self.prefix.get())
 
               self.export5_btn.configure(fg='#d64161', background="white")
               self.update()
-              tkMessageBox.showinfo("Done!", "Data exported") 
+              tkMessageBox.showinfo("Done!", "Data exported")
 
            else:
-              tkMessageBox.showinfo("Error", "Read in data first!") 
+              tkMessageBox.showinfo("Error", "Read in data first!")
 
 
 	#==============================================================
@@ -1178,20 +1178,20 @@ def gui():
 if __name__ == '__main__':
 
    print("""
-    ____  ____  ___ ____  __  __     
-   |  _ \|  _ \|_ _/ ___||  \/  |  _ 
+    ____  ____  ___ ____  __  __
+   |  _ \|  _ \|_ _/ ___||  \/  |  _
    | |_) | |_) || |\___ \| |\/| | (_)
-   |  __/|  _ < | | ___) | |  | |  _ 
+   |  __/|  _ < | | ___) | |  | |  _
    |_|   |_| \_\___|____/|_|  |_| (_)
-                                     
-   ___                 _      _                  __                   __      
-    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _ 
-    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_ 
-                                                                              
-    __                                          
-   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _  
-   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_| 
-                                  |  |       _| 
+
+   ___                 _      _                  __                   __
+    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _
+    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_
+
+    __
+   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _
+   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_|
+                                  |  |       _|
 
    |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1200,5 +1200,3 @@ if __name__ == '__main__':
    """)
 
    gui()
-
-
