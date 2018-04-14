@@ -73,7 +73,7 @@ def setupPackage():
          license = "GNU GENERAL PUBLIC LICENSE v3",
          packages=['prism'],
          platforms='OS Independent',
-         ext_modules=cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx']),
+         #ext_modules=cythonize(['pydensecrf/eigen.pyx', 'pydensecrf/densecrf.pyx']),
          package_data={'prism': ['*.png', 'data/newbex/bs/*.tiff', 'data/newbex/ref/*.shp', 'data/newbex/ref/*.shx', 'data/newbex/ref/*.dbf', 'data/newbex/ref/*.qpj', 'data/newbex/ref/*.prj', 'data/newbex/ref/*.cpg', 'data/patricia/bs/*.tiff', 'data/patricia/ref/*.shp', 'data/patricia/ref/*.shx', 'data/patricia/ref/*.dbf', 'data/patricia/ref/*.qpj', 'data/patricia/ref/*.prj', 'data/patricia/ref/*.cpg']} #
    )
 

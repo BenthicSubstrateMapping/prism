@@ -19,7 +19,7 @@
 #   |d|a|n|i|e|l|.|b|u|s|c|o|m|b|e|@|n|a|u|.|e|d|u|
 # https://github.com/dbuscombe-usgs/prism
 
-__version__ = '0.1'
+__version__ = '0.1.1'
 
 #-----------------------------------------------------------------------------
 # Imports
