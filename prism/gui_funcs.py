@@ -74,26 +74,26 @@ def gui():
     # NOTE: Frame will make a top-level window if one doesn't already exist which
     # can then be accessed via the frame's master attribute
     # make a Frame whose parent is root, named "prism"
-    master = Tkinter.Frame(name='prism')
+	master = Tkinter.Frame(name='prism')
 
-    self = master.master  # short-cut to top-level window
-    master.pack()  # pack the Frame into root, defaults to side=TOP
-    self.title('PriSM: Probabilistic Acoustic Sediment Mapping')  # name the window
+	self = master.master  # short-cut to top-level window
+	master.pack()  # pack the Frame into root, defaults to side=TOP
+	self.title('PriSM: Probabilistic Acoustic Sediment Mapping')  # name the window
 
     # field for DAT filename
-    self.DATfilename = Tkinter.StringVar()
-    self.DATfilename.set(u" ")
+	self.DATfilename = Tkinter.StringVar()
+	self.DATfilename.set(u" ")
 
     # field for bed filename
-    self.BEDfilename = Tkinter.StringVar()
-    self.BEDfilename.set(None)
+	self.BEDfilename = Tkinter.StringVar()
+	self.BEDfilename.set(None)
 
     # create notebook
-    demoPanel = Tkinter.Frame(master, name='demo')  # create a new frame slaved to master
-    demoPanel.pack()  # pack the Frame into root
+	demoPanel = Tkinter.Frame(master, name='demo')  # create a new frame slaved to master
+	demoPanel.pack()  # pack the Frame into root
 
     # create (notebook) demo panel
-    nb = ttk.Notebook(demoPanel, name='notebook')  # create the ttk.Notebook widget
+	nb = ttk.Notebook(demoPanel, name='notebook')  # create the ttk.Notebook widget
 
 	# extend bindings to top level window allowing
 	#   CTRL+TAB - cycles thru tabs

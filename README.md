@@ -42,21 +42,6 @@ pip install git+https://github.com/dbuscombe-usgs/prism.git
 
 ![win3](https://user-images.githubusercontent.com/3596509/36634628-a567d768-1964-11e8-8d19-3e8aba9b6f03.png)
 
-If you get an error that looks like this:
-
-![win4](https://user-images.githubusercontent.com/3596509/36635710-3d589a64-1977-11e8-8981-632dbd40f06a.png)
-
-
-it means you need to install a C++ compiler. Go to this site: http://landinghub.visualstudio.com/visual-cpp-build-tools
-
-and download the Visual C++ Build Tools 2015. Install using the 'default' setting. It takes about 5-10 minutes to install
-
-![win_c++](https://user-images.githubusercontent.com/3596509/36635941-4b1bfd82-197a-11e8-85d4-c85b698886ea.png)
-
-Run the PriSM installation again and it should work:
-
-![win5](https://user-images.githubusercontent.com/3596509/36634775-12aacffe-1967-11e8-98d0-f1b6a7732d37.png)
-
 
 Linux:
 
@@ -64,6 +49,7 @@ Linux:
 conda create --name prism_test python=3
 source activate prism_test
 pip install numpy Cython
+pip install pydensecrf
 pip install git+https://github.com/dbuscombe-usgs/prism.git
 ```
 
