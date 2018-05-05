@@ -27,9 +27,10 @@ Windows:
 conda create --name prism_test python=3
 activate prism_test
 pip install Cython
-conda install gdal rasterio shapely fiona -y
+conda install gdal rasterio shapely fiona pyproj -y
 conda config --add channels conda-forge
 conda install pydensecrf
+conda config --remove channels conda-forge
 ```
 
 ![win1](https://user-images.githubusercontent.com/3596509/36634602-3abda3d4-1964-11e8-9a17-970e296c807f.png)
