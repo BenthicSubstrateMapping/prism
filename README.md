@@ -5,7 +5,8 @@ A Python framework for Probabilistic Acoustic Sediment Mapping. See project webs
 
 
 ### Contributing & Credits
-Software Developer: Dr. Daniel Buscombe, Northern Arizona University, Flagstaff, AZ 86011, daniel.buscombe@nau.edu
+Software Developer: Dr. Daniel Buscombe, Northern Arizona University, Flagstaff, AZ 86011,
+Now at Marda Science, LLC.
 
 Example backscatter data (.tiff files) originate from data collected by R2Sonic and distributed for use as part of the R2Sonic 2017 Multispectral Backscatter competition.
 
@@ -13,7 +14,7 @@ Bed observation data from Patricia Bay are digitized from data presented in: B.~
 
 Bed observation data from Portsmouth (NEWBEX) are digitized from data presented in: T.~Weber, L.~and Ward. Observations of backscatter from sand and gravel seafloors between 170 and 250 kHz. Journal of the Acoustical Society of America, vol.~138, no.~4, pp.~2169 - 2180, 2015.
 
-CRF subfunctions using the [pydensecrf wrapper](https://github.com/lucasb-eyer/pydensecrf) 
+CRF subfunctions using the [pydensecrf wrapper](https://github.com/lucasb-eyer/pydensecrf)
 
 ## Setup
 
@@ -21,86 +22,10 @@ CRF subfunctions using the [pydensecrf wrapper](https://github.com/lucasb-eyer/p
 
 PriSM is designed for use with Python 3
 
-Windows:
 
 ```
-conda create --name prism_test python=3
-activate prism_test
-pip install Cython
-conda install gdal rasterio shapely fiona pyproj -y
-conda config --add channels conda-forge
-conda install pydensecrf
-conda config --remove channels conda-forge
-```
-
-![win1](https://user-images.githubusercontent.com/3596509/36634602-3abda3d4-1964-11e8-9a17-970e296c807f.png)
-
-![win2](https://user-images.githubusercontent.com/3596509/36635357-9c4b57b6-1970-11e8-88bf-272674b43222.png)
-
-```
-pip install git+https://github.com/dbuscombe-usgs/prism.git
-```
-
-![win3](https://user-images.githubusercontent.com/3596509/36634628-a567d768-1964-11e8-8d19-3e8aba9b6f03.png)
-
-
-Linux:
-
-```
-conda create --name prism_test python=3
-source activate prism_test
-pip install numpy Cython
-pip install pydensecrf
-pip install git+https://github.com/dbuscombe-usgs/prism.git
-```
-
-finally deactivate the venv ::
-
-```
-deactivate
-```
-
-Linux:
-
-```
-source deactivate
-```
-
-
-### Installing as a library accessible outside of virtual env
-
-
-1. the latest 'bleeding edge' (pre-release) version directly from github::
-
-```
-pip install git+https://github.com/dbuscombe-usgs/prism.git
-```
-
-(Windows users) install git from here: https://git-scm.com/download/win
-
-
-2. from github repo clone::
-
-```
-git clone git@github.com:dbuscombe-usgs/prism.git
-cd prism
-python setup.py install
-```
-
-or a local installation:
-
-```
-python setup.py install --user
-```
-
-3. linux users, using a virtual environment:
-
-```
-virtualenv venv
-source venv/bin/activate
-pip install numpy Cython
-pip install git+https://github.com/dbuscombe-usgs/prism.git
-deactivate ##(or source venv/bin/deactivate)
+conda env create --file env/prism.yml
+conda activate prism
 ```
 
 
@@ -109,7 +34,7 @@ deactivate ##(or source venv/bin/deactivate)
 Then run the test ::
 
 ```
-python -c "import prism; prism.test.dotest()" 
+python -c "import prism; prism.test.dotest()"
 ```
 
 ![win6](https://user-images.githubusercontent.com/3596509/36634778-1683d2ec-1967-11e8-9d9e-13cd52029a99.png)
@@ -121,7 +46,7 @@ python -c "import prism; prism.test.dotest()"
 run the GUI ::
 
 ```
-python -c "import prism; prism.gui_funcs.gui()" 
+python -c "import prism; prism.gui_funcs.gui()"
 ```
 
 ![win8](https://user-images.githubusercontent.com/3596509/36635719-76f30246-1977-11e8-9cae-d2f9caf8c4fd.png)
@@ -134,7 +59,7 @@ or alternatively from within the python console like so:
 
 ## More info
 
-Download the [user manual](https://daniel-buscombe.squarespace.com/s/prism_manual-hwpp.pdf) 
+Download the [user manual](https://daniel-buscombe.squarespace.com/s/prism_manual-hwpp.pdf)
 
 
 ## Using prism within python scripts
@@ -151,8 +76,8 @@ def run_prism():
    tol = 1e-2
 
    ##CRF parameters
-   theta = 300 
-   mu = 100 
+   theta = 300
+   mu = 100
    n_iter = 15
 
    # general settings
@@ -231,7 +156,4 @@ if __name__ == '__main__':
 ## Version History
 
 v. 0.1. 2/26/2018. Initial public release
-
-
-
-
+11/16/21 minor upgrade / test - still works!

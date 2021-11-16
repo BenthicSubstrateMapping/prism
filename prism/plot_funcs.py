@@ -1,17 +1,17 @@
-#    ____  ____  ___ ____  __  __     
-#   |  _ \|  _ \|_ _/ ___||  \/  |  _ 
+#    ____  ____  ___ ____  __  __
+#   |  _ \|  _ \|_ _/ ___||  \/  |  _
 #   | |_) | |_) || |\___ \| |\/| | (_)
-#   |  __/|  _ < | | ___) | |  | |  _ 
+#   |  __/|  _ < | | ___) | |  | |  _
 #   |_|   |_| \_\___|____/|_|  |_| (_)
-#                                     
-#   ___                 _      _                  __                   __      
-#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _ 
-#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_ 
-#                                                                              
-#    __                                          
-#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _  
-#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_| 
-#                                  |  |       _| 
+#
+#   ___                 _      _                  __                   __
+#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _
+#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_
+#
+#    __
+#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _
+#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_|
+#                                  |  |       _|
 #
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -43,7 +43,7 @@ def plot_bs_maps(img, bed, bs, cmap, prefix):
 
    lonmin = bs[0]['lonmin']
    lonmax = bs[0]['lonmax']
-   latmin = bs[0]['latmin']  
+   latmin = bs[0]['latmin']
    latmax = bs[0]['latmax']
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -94,9 +94,9 @@ def plot_bs_maps(img, bed, bs, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'bs_map_bed_obs', dpi=300, bbox_inches='tight')
    plt.close('all')
@@ -119,7 +119,7 @@ def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
 
    fig = plt.figure(dpi=300)
    fig.subplots_adjust(hspace=0.4)
-   ax=plt.subplot(231) 
+   ax=plt.subplot(231)
    ax.set_facecolor((.5, .5, .5))
 
    b = np.arange(np.min(img),np.max(img),20)
@@ -139,7 +139,7 @@ def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
       plt.xlim(np.min(img),np.max(img)); plt.ylim(0,1)
       plt.legend(loc=2, fontsize=5)
       plt.xlabel('Backscatter Freq. 1 [-]', fontsize=6)
-      plt.ylabel('Cumulative frequency', fontsize=6)  
+      plt.ylabel('Cumulative frequency', fontsize=6)
 
       ax=plt.subplot(232)
       ax.set_facecolor((.5, .5, .5))
@@ -189,7 +189,7 @@ def plot_dists_per_sed(Lc, img, bed, cmap, prefix):
       plt.xlim(np.min(img),np.max(img)); plt.ylim(0,1)
       plt.legend(loc=2, fontsize=5)
       plt.xlabel('Backscatter Freq. [-]', fontsize=6)
-      plt.ylabel('Cumulative frequency', fontsize=6)  
+      plt.ylabel('Cumulative frequency', fontsize=6)
 
       plt.savefig(base+'Dists_bs_per_sed', dpi=300, bbox_inches='tight')
       plt.close('all')
@@ -201,14 +201,14 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    This function makes plots of GMM results
    """
 
-   y_prob[mask==1] = np.nan   
+   y_prob[mask==1] = np.nan
    y_pred[mask==1] = np.nan
-   
+
    cmap = colors.ListedColormap(cmap)
 
    lonmin = bs[0]['lonmin']
    lonmax = bs[0]['lonmax']
-   latmin = bs[0]['latmin']  
+   latmin = bs[0]['latmin']
    latmax = bs[0]['latmax']
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -236,9 +236,9 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_pred_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -266,9 +266,9 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_pred_map_obs.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -295,9 +295,9 @@ def plot_gmm(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(labs)+1)) 
+   #cb.set_ticks(.5+np.arange(len(labs)+1))
    #cb.ax.set_yticklabels(labs)
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_pred_prob_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -309,9 +309,9 @@ def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    This function makes plots of GMM results with underlying image (requires basemap)
    """
 
-   y_prob[mask==1] = np.nan   
+   y_prob[mask==1] = np.nan
    y_pred[mask==1] = np.nan
-   
+
    cmap = colors.ListedColormap(cmap)
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -362,9 +362,9 @@ def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Substrate Type')
 
    plt.savefig(base+'GMM_map_image.png', dpi=300, bbox_inches='tight') #base+
@@ -414,9 +414,9 @@ def plot_gmm_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    #cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Posterior Prob.')
 
    plt.savefig(base+'GMM_prob_image.png', dpi=300, bbox_inches='tight') #base+
@@ -430,10 +430,10 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
    This function makes plots of CRF results
    """
-   
-   y_prob[mask==1] = np.nan   
+
+   y_prob[mask==1] = np.nan
    y_pred[mask==1] = np.nan
-   
+
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
    base = prefix+'_'
 
@@ -441,7 +441,7 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
 
    lonmin = bs[0]['lonmin']
    lonmax = bs[0]['lonmax']
-   latmin = bs[0]['latmin']  
+   latmin = bs[0]['latmin']
    latmax = bs[0]['latmax']
 
    #----------------------------------------------------------------
@@ -466,9 +466,9 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'CRF_pred_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -496,9 +496,9 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'CRF_pred_map_obs.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -525,9 +525,9 @@ def plot_crf(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(labs)+1)) 
+   #cb.set_ticks(.5+np.arange(len(labs)+1))
    #cb.ax.set_yticklabels(labs)
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'CRF_pred_prob_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -538,9 +538,9 @@ def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    """
    This function makes plots of CRF results with underlying image (requires basemap)
    """
-   y_prob[mask==1] = np.nan   
+   y_prob[mask==1] = np.nan
    y_pred[mask==1] = np.nan
-   
+
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
    base = prefix+'_'
 
@@ -591,9 +591,9 @@ def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Substrate Type')
 
    plt.savefig(base+'CRF_map_image.png', dpi=300, bbox_inches='tight') #base+
@@ -643,9 +643,9 @@ def plot_crf_image(mask, y_pred, y_prob, bs, bed, cmap, prefix):
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    #cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Posterior Prob.')
 
    plt.savefig(base+'CRF_prob_image.png', dpi=300, bbox_inches='tight') #base+
@@ -659,16 +659,16 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    """
    This function makes plots of GMM and CRF results side by side
    """
-   y_prob_gmm[mask==1] = np.nan   
+   y_prob_gmm[mask==1] = np.nan
    y_pred_gmm[mask==1] = np.nan
-   y_prob_crf[mask==1] = np.nan   
+   y_prob_crf[mask==1] = np.nan
    y_pred_crf[mask==1] = np.nan
-   
+
    cmap = colors.ListedColormap(cmap)
 
    lonmin = bs[0]['lonmin']
    lonmax = bs[0]['lonmax']
-   latmin = bs[0]['latmin']  
+   latmin = bs[0]['latmin']
    latmax = bs[0]['latmax']
 
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
@@ -698,9 +698,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
    cb.remove()
 
    ax1 = fig.add_subplot(222)
@@ -722,9 +722,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_CRF_pred_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -754,9 +754,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
    cb.remove()
 
    ax1 = fig.add_subplot(222)
@@ -779,9 +779,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_CRF_pred_map_obs.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -810,9 +810,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    #divider = make_axes_locatable(ax1)
    #cax = divider.append_axes("right", size="5%")
    #cb=plt.colorbar(im, cax=cax)
-   ##cb.set_ticks(.5+np.arange(len(labs)+1)) 
+   ##cb.set_ticks(.5+np.arange(len(labs)+1))
    ##cb.ax.set_yticklabels(labs)
-   #cb.ax.tick_params(labelsize=6) 
+   #cb.ax.tick_params(labelsize=6)
 
    ax1 = fig.add_subplot(222)
    im=plt.imshow(y_prob_crf, extent=[lonmin, lonmax, latmin, latmax], cmap='RdBu', vmin=0.5, vmax=1.0)
@@ -833,9 +833,9 @@ def plot_gmm_crf(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs, bed, 
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(labs)+1)) 
+   #cb.set_ticks(.5+np.arange(len(labs)+1))
    #cb.ax.set_yticklabels(labs)
-   cb.ax.tick_params(labelsize=6) 
+   cb.ax.tick_params(labelsize=6)
 
    plt.savefig(base+'GMM_CRF_pred_prob_map.png', dpi=300, bbox_inches='tight') #base+
    plt.close('all')
@@ -847,11 +847,11 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    """
    This function makes plots of GMM and CRF results side by side with underlying image (requires basemap)
    """
-   y_prob_gmm[mask==1] = np.nan   
+   y_prob_gmm[mask==1] = np.nan
    y_pred_gmm[mask==1] = np.nan
-   y_prob_crf[mask==1] = np.nan   
+   y_prob_crf[mask==1] = np.nan
    y_pred_crf[mask==1] = np.nan
-   
+
    #base = '..'+os.sep+'outputs'+os.sep+prefix+'_'
    base = prefix+'_'
 
@@ -905,9 +905,9 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Substrate Type')
 
    ax1 = fig.add_subplot(222)
@@ -949,9 +949,9 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax)
-   cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Substrate Type')
 
    plt.savefig(base+'GMM_CRF_map_image.png', dpi=300, bbox_inches='tight') #base+
@@ -1004,9 +1004,9 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    #cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Posterior Prob.')
 
 
@@ -1049,9 +1049,9 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
    divider = make_axes_locatable(ax1)
    cax = divider.append_axes("right", size="5%")
    cb=plt.colorbar(im, cax=cax, extend='min')
-   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1)) 
+   #cb.set_ticks(.5+np.arange(len(bed['labels'])+1))
    #cb.ax.set_yticklabels(bed['labels'])
-   cb.ax.tick_params(labelsize=4) 
+   cb.ax.tick_params(labelsize=4)
    cb.ax.set_label('Posterior Prob.')
 
 
@@ -1092,9 +1092,9 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
 
 #      ax.add_image(request, 15, zorder=0)
 #      ax.set_extent(( lonmin-n, lonmax+n, latmin-n, latmax+n ), crs=crs_lonlat)
-#      gl = ax.gridlines(crs=crs_lonlat, 
-#                  xlocs=np.arange(lonmin, lonmax, n), 
-#                  ylocs=np.arange(latmin, latmax, n), 
+#      gl = ax.gridlines(crs=crs_lonlat,
+#                  xlocs=np.arange(lonmin, lonmax, n),
+#                  ylocs=np.arange(latmin, latmax, n),
 #                  draw_labels=True)
 #      gl.xlabels_top = None
 #      gl.xformatter = LONGITUDE_FORMATTER
@@ -1150,4 +1150,3 @@ def plot_gmm_crf_images(mask, y_pred_gmm, y_prob_gmm, y_pred_crf, y_prob_crf, bs
 #      plt.savefig(base+'bs_map_image.png', dpi=300, bbox_inches='tight') #base+
 #      plt.close('all')
 #      del map, fig
-

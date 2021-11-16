@@ -1,17 +1,17 @@
-#    ____  ____  ___ ____  __  __     
-#   |  _ \|  _ \|_ _/ ___||  \/  |  _ 
+#    ____  ____  ___ ____  __  __
+#   |  _ \|  _ \|_ _/ ___||  \/  |  _
 #   | |_) | |_) || |\___ \| |\/| | (_)
-#   |  __/|  _ < | | ___) | |  | |  _ 
+#   |  __/|  _ < | | ___) | |  | |  _
 #   |_|   |_| \_\___|____/|_|  |_| (_)
-#                                     
-#   ___                 _      _                  __                   __      
-#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _ 
-#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_ 
-#                                                                              
-#    __                                          
-#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _  
-#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_| 
-#                                  |  |       _| 
+#
+#   ___                 _      _                  __                   __
+#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _
+#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_
+#
+#    __
+#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _
+#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_|
+#                                  |  |       _|
 #
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -47,7 +47,7 @@ def read_csvfile(refs_file, bs):
       Clist.append(Cnames[C==k][0])
 
    # just looking at points within bounding box of survey
-   ## ========================================================= 
+   ## =========================================================
    polygon = Polygon ([(bs[0]['lonmin'], bs[0]['latmin']),
     (bs[0]['lonmin'], bs[0]['latmax']),
     (bs[0]['lonmax'], bs[0]['latmax']),
@@ -59,12 +59,12 @@ def read_csvfile(refs_file, bs):
          ind1.append(1)
       else:
          ind1.append(0)
-   
+
    ind1 = np.asarray(ind1)
    ind1 = np.where(ind1==1)[0]
 
    # just looking at points within survey extent
-   ## ========================================================= 
+   ## =========================================================
    obs_x, obs_y = bs[0]['trans'](np.asarray(X)[ind1], np.asarray(Y)[ind1])
 
    gres = bs[0]['gridres']
@@ -104,7 +104,7 @@ def read_csvfile(refs_file, bs):
 ##-------------------------------------------------------------
 def read_shpfile(refs_file, bs):
    """
-   This function reads bed observations from a shapefile (.shp) file. 
+   This function reads bed observations from a shapefile (.shp) file.
    """
 
    print('Reading and filtering bed observation data ...')
@@ -130,7 +130,7 @@ def read_shpfile(refs_file, bs):
       Ccodes = [Clist.index(c) for c in C]
 
    # just looking at points within bounding box of survey
-   ## ========================================================= 
+   ## =========================================================
    polygon = Polygon ([(bs[0]['lonmin'], bs[0]['latmin']),
     (bs[0]['lonmin'], bs[0]['latmax']),
     (bs[0]['lonmax'], bs[0]['latmax']),
@@ -142,12 +142,12 @@ def read_shpfile(refs_file, bs):
          ind1.append(1)
       else:
          ind1.append(0)
-   
+
    ind1 = np.asarray(ind1)
    ind1 = np.where(ind1==1)[0]
 
    # just looking at points within survey extent
-   ## ========================================================= 
+   ## =========================================================
    obs_x, obs_y = bs[0]['trans'](np.asarray(X)[ind1], np.asarray(Y)[ind1])
 
    gres = bs[0]['gridres']
@@ -210,7 +210,7 @@ def read_geotiff(input, gridres, chambolle):
          layer = src.read()[0,:,:]
       w, h = (src.width, src.height)
       xmin, ymin, xmax, ymax = src.bounds
-      crs = src.get_crs()
+      crs = src.crs #get_crs()
       del src
       bs.append({'bs':layer, 'w':w, 'h':h, 'xmin':xmin, 'xmax':xmax, 'ymin':ymin, 'ymax':ymax, 'crs':crs})
 
@@ -258,6 +258,3 @@ def read_geotiff(input, gridres, chambolle):
       del tv
 
    return np.squeeze(img), bs
-
-
-

@@ -1,0 +1,24 @@
+name: prism
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+ - python
+ - pip
+ - jupyter
+ - pandas
+ - pydensecrf
+ - scipy
+ - numpy
+ - cython
+ - Pillow
+ - matplotlib
+ - pyproj
+ - fiona
+ - rasterio
+ - shapely
+ - scikit-image
+ - scikit-learn
+ - pip:
+    - tkcolorpicker
+

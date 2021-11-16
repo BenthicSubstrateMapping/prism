@@ -1,17 +1,17 @@
-#    ____  ____  ___ ____  __  __     
-#   |  _ \|  _ \|_ _/ ___||  \/  |  _ 
+#    ____  ____  ___ ____  __  __
+#   |  _ \|  _ \|_ _/ ___||  \/  |  _
 #   | |_) | |_) || |\___ \| |\/| | (_)
-#   |  __/|  _ < | | ___) | |  | |  _ 
+#   |  __/|  _ < | | ___) | |  | |  _
 #   |_|   |_| \_\___|____/|_|  |_| (_)
-#                                     
-#   ___                 _      _                  __                   __      
-#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _ 
-#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_ 
-#                                                                              
-#    __                                          
-#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _  
-#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_| 
-#                                  |  |       _| 
+#
+#   ___                 _      _                  __                   __
+#    | _  _ ||_  _ \/ _|__ ._ |_).__ |_  _.|_ o|o(__|_o _  /\  _ _    (__|_o _
+#    |(_)(_)||_)(_)/\  |(_)|  |  |(_)|_)(_||_)|||__)|_|(_ /--\(_(_)|_|__)|_|(_
+#
+#    __
+#   (_  _  _|o._ _  _ .__|_ |\/| _.._ ._ o._  _
+#   __)(/_(_||| | |(/_| ||_ |  |(_||_)|_)|| |(_|
+#                                  |  |       _|
 #
 #   |b|y| |D|a|n|i|e|l| |B|u|s|c|o|m|b|e|
 #   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -23,9 +23,10 @@ from __future__ import division
 from sklearn import mixture
 import numpy as np
 import warnings
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore",category=DeprecationWarning)
-    from sklearn import cross_validation
+# with warnings.catch_warnings():
+#     warnings.filterwarnings("ignore",category=DeprecationWarning)
+#     from sklearn import cross_validation
+from sklearn.model_selection import train_test_split    
 from prism.common_funcs import get_X
 ##-------------------------------------------------------------
 
@@ -38,12 +39,14 @@ def fit_GMM(img, Lc, test_size, covariance, tol):
    D, l = get_X(img, Lc)
 
    # split the data into training and testing portions based on 'test_size'
-   X_train, X_test, y_train, y_test = cross_validation.train_test_split(D,l, test_size=test_size, random_state=42)
+   #X_train, X_test, y_train, y_test = cross_validation.train_test_split(D,l, test_size=test_size, random_state=42)
+   X_train, X_test, y_train, y_test = train_test_split(D,l, test_size=test_size, random_state=42)
+
 
    print('Fitting GMM ...')
    # set up the gaussian mixture model
-   g = mixture.GaussianMixture(n_components=len(np.unique(l)), max_iter=100, 
-                            random_state=42, covariance_type=covariance, verbose=0, tol=tol) 
+   g = mixture.GaussianMixture(n_components=len(np.unique(l)), max_iter=100,
+                            random_state=42, covariance_type=covariance, verbose=0, tol=tol)
 
    # find per-label means
    tmp = [X_train[y_train == i].mean(axis=0) for i in range(len(np.unique(l)))]
@@ -106,5 +109,3 @@ def apply_GMM(g, img, prob_thres):
    #print(np.sum(y_pred==0)/np.sum(~np.isnan(y_pred)))
    print('... GMM substrate estimation complete.')
    return y_pred, y_pred_prob, YP
-
-
